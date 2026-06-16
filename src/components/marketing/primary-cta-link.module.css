@@ -1,0 +1,503 @@
+@property --nous-primary-cta-angle-1 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -75deg;
+}
+
+@property --nous-primary-cta-angle-2 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -45deg;
+}
+
+@property --nous-primary-cta-prism-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -75deg;
+}
+
+@property --nous-primary-cta-edge-shine-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -75deg;
+}
+
+.wrap {
+  --nous-primary-cta-size: 0.875rem;
+  --nous-primary-cta-border-width: clamp(1px, 0.0625em, 4px);
+  --nous-primary-cta-hover-time: 400ms;
+  --nous-primary-cta-hover-ease: cubic-bezier(0.25, 1, 0.5, 1);
+  --nous-primary-cta-backdrop-blur: 1px;
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 999vw;
+  background: transparent;
+  font-size: var(--nous-primary-cta-size);
+  pointer-events: none;
+  backdrop-filter: blur(var(--nous-primary-cta-backdrop-blur));
+  transition:
+    transform var(--nous-primary-cta-hover-time) var(--nous-primary-cta-hover-ease),
+    backdrop-filter var(--nous-primary-cta-hover-time)
+      var(--nous-primary-cta-hover-ease);
+}
+
+.wrap:has(.button:hover) {
+  --nous-primary-cta-backdrop-blur: 0.5px;
+}
+
+.shadow {
+  --nous-primary-cta-shadow-cutoff: 2em;
+  position: absolute;
+  top: calc(0% - var(--nous-primary-cta-shadow-cutoff) / 2);
+  left: calc(0% - var(--nous-primary-cta-shadow-cutoff) / 2);
+  width: calc(100% + var(--nous-primary-cta-shadow-cutoff));
+  height: calc(100% + var(--nous-primary-cta-shadow-cutoff));
+  overflow: visible;
+  filter: blur(clamp(2px, 0.125em, 12px));
+  pointer-events: none;
+}
+
+.shadow::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  top: calc(var(--nous-primary-cta-shadow-cutoff) - 0.5em);
+  left: calc(var(--nous-primary-cta-shadow-cutoff) - 0.875em);
+  box-sizing: border-box;
+  width: calc(100% - var(--nous-primary-cta-shadow-cutoff) - 0.25em);
+  height: calc(100% - var(--nous-primary-cta-shadow-cutoff) - 0.25em);
+  padding: 0.125em;
+  border-radius: 999vw;
+  background: var(--nous-primary-cta-shadow-ring-bg);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.5;
+  transition: all var(--nous-primary-cta-hover-time) var(--nous-primary-cta-hover-ease);
+}
+
+.button {
+  all: unset;
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 999vw;
+  background: var(--nous-primary-cta-bg);
+  box-shadow: var(--nous-primary-cta-shadow);
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  pointer-events: auto;
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  transition: all var(--nous-primary-cta-hover-time) var(--nous-primary-cta-hover-ease);
+}
+
+.button::before {
+  content: none;
+}
+
+.button:hover {
+  transform: scale(0.975);
+  box-shadow: var(--nous-primary-cta-shadow-hover);
+}
+
+.button:hover::before {
+  content: none;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--nous-accent-info-fg-strong);
+  outline-offset: 4px;
+}
+
+.prismFilters {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.edgeShine {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 999vw;
+  opacity: var(--nous-primary-cta-edge-opacity);
+  filter: var(--nous-primary-cta-edge-filter);
+  mix-blend-mode: var(--nous-primary-cta-edge-blend-mode);
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity var(--nous-primary-cta-hover-time) var(--nous-primary-cta-hover-ease),
+    transform var(--nous-primary-cta-hover-time) var(--nous-primary-cta-hover-ease);
+}
+
+.edgeShine::before {
+  content: none;
+}
+
+.edgeChannel {
+  --nous-primary-cta-edge-shine-angle: -75deg;
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  padding: 2px;
+  border-radius: inherit;
+  mix-blend-mode: var(--nous-primary-cta-edge-blend-mode);
+  opacity: var(--nous-primary-cta-edge-channel-opacity);
+  box-shadow: var(--nous-primary-cta-border-shadow);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  transition: --nous-primary-cta-edge-shine-angle 500ms ease;
+}
+
+.edgeChannelRed {
+  background: conic-gradient(
+    from var(--nous-primary-cta-edge-shine-angle) at calc(50% + 0.65px) calc(50% + 0.25px),
+    var(--nous-primary-cta-edge-red),
+    transparent 5% 40%,
+    var(--nous-primary-cta-edge-red) 50%,
+    transparent 60% 95%,
+    var(--nous-primary-cta-edge-red)
+  );
+  filter: url("#nous-cta-edge-displace-red");
+}
+
+.edgeChannelGreen {
+  background: conic-gradient(
+    from var(--nous-primary-cta-edge-shine-angle) at calc(50% + 0.05px) calc(50% + 0.05px),
+    var(--nous-primary-cta-edge-green),
+    transparent 5% 40%,
+    var(--nous-primary-cta-edge-green) 50%,
+    transparent 60% 95%,
+    var(--nous-primary-cta-edge-green)
+  );
+  filter: url("#nous-cta-edge-displace-green");
+}
+
+.edgeChannelBlue {
+  background: conic-gradient(
+    from var(--nous-primary-cta-edge-shine-angle) at calc(50% - 1px) calc(50% - 0.45px),
+    var(--nous-primary-cta-edge-blue),
+    transparent 5% 40%,
+    var(--nous-primary-cta-edge-blue) 50%,
+    transparent 60% 95%,
+    var(--nous-primary-cta-edge-blue)
+  );
+  filter: url("#nous-cta-edge-displace-blue");
+}
+
+.wrap:has(.button:hover) .edgeShine {
+  transform: scale(0.975);
+}
+
+.wrap:has(.button:hover) .edgeChannel {
+  --nous-primary-cta-edge-shine-angle: -125deg;
+}
+
+.wrap:has(.button:active) .edgeChannel {
+  --nous-primary-cta-edge-shine-angle: -75deg;
+}
+
+.edgePrism,
+.prism {
+  --nous-primary-cta-prism-angle: -75deg;
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 999vw;
+  opacity: var(--nous-primary-cta-prism-opacity);
+  filter: var(--nous-primary-cta-prism-filter);
+  mix-blend-mode: var(--nous-primary-cta-prism-blend-mode);
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity var(--nous-primary-cta-hover-time) var(--nous-primary-cta-hover-ease),
+    transform var(--nous-primary-cta-hover-time) var(--nous-primary-cta-hover-ease),
+    --nous-primary-cta-prism-angle 500ms ease;
+}
+
+.edgePrism {
+  z-index: 5;
+}
+
+.edgePrism::before,
+.edgePrism::after,
+.prism::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.edgePrism::before,
+.edgePrism::after {
+  inset: -1.5px;
+  padding: 1.5px;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.edgePrism::before {
+  background:
+    conic-gradient(
+      from var(--nous-primary-cta-prism-angle) at calc(50% - 1.25px) calc(50% - 0.75px),
+      var(--nous-primary-cta-prism-red),
+      transparent 5% 42%,
+      var(--nous-primary-cta-prism-red) 50%,
+      transparent 58% 95%,
+      var(--nous-primary-cta-prism-red)
+    ),
+    conic-gradient(
+      from var(--nous-primary-cta-prism-angle) at 50% calc(50% + 1px),
+      var(--nous-primary-cta-prism-green),
+      transparent 5% 42%,
+      var(--nous-primary-cta-prism-green) 50%,
+      transparent 58% 95%,
+      var(--nous-primary-cta-prism-green)
+    ),
+    conic-gradient(
+      from var(--nous-primary-cta-prism-angle) at calc(50% + 1.25px) calc(50% - 0.5px),
+      var(--nous-primary-cta-prism-blue),
+      transparent 5% 42%,
+      var(--nous-primary-cta-prism-blue) 50%,
+      transparent 58% 95%,
+      var(--nous-primary-cta-prism-blue)
+    );
+  background-blend-mode: screen, screen, normal;
+}
+
+.edgePrism::after {
+  content: none;
+}
+
+.prism::after {
+  inset: 0;
+  background:
+    linear-gradient(
+      var(--nous-primary-cta-angle-2),
+      transparent 0%,
+      transparent 38%,
+      var(--nous-primary-cta-prism-red) 43%,
+      var(--nous-primary-cta-prism-green) 47%,
+      var(--nous-primary-cta-prism-blue) 51%,
+      var(--nous-primary-cta-prism-white) 53%,
+      transparent 58%,
+      transparent 100%
+    );
+  background-position: 0% 50%;
+  background-repeat: no-repeat;
+  background-size: 220% 220%;
+  opacity: 0.42;
+  transform: translateX(-0.75px);
+  transition:
+    background-position calc(var(--nous-primary-cta-hover-time) * 1.25)
+      var(--nous-primary-cta-hover-ease),
+    transform calc(var(--nous-primary-cta-hover-time) * 1.25)
+      var(--nous-primary-cta-hover-ease),
+    --nous-primary-cta-angle-2 calc(var(--nous-primary-cta-hover-time) * 1.25)
+      var(--nous-primary-cta-hover-ease);
+}
+
+.wrap:has(.button:hover) .prism {
+  opacity: calc(var(--nous-primary-cta-prism-opacity-hover) * 0.72);
+  transform: scale(0.975);
+}
+
+.wrap:has(.button:hover) .edgePrism {
+  --nous-primary-cta-prism-angle: -125deg;
+  opacity: var(--nous-primary-cta-prism-opacity-hover);
+  transform: scale(0.975);
+}
+
+.wrap:has(.button:hover) .prism::after {
+  background-position: 25% 50%;
+  transform: translateX(0.75px);
+}
+
+.wrap:has(.button:active) .prism {
+  opacity: calc(var(--nous-primary-cta-prism-opacity-active) * 0.72);
+}
+
+.wrap:has(.button:active) .edgePrism {
+  --nous-primary-cta-prism-angle: -75deg;
+  opacity: var(--nous-primary-cta-prism-opacity-active);
+}
+
+.wrap:has(.button:active) .prism::after {
+  --nous-primary-cta-angle-2: -15deg;
+  background-position: 50% 15%;
+}
+
+.button span {
+  position: relative;
+  z-index: 2;
+  display: block;
+  padding-inline: 1.5em;
+  padding-block: 0.875em;
+  color: var(--nous-primary-cta-text);
+  font-family: var(--nous-font-sans);
+  font-size: 1em;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  text-shadow: var(--nous-primary-cta-text-shadow);
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: all var(--nous-primary-cta-hover-time) var(--nous-primary-cta-hover-ease);
+}
+
+.button:hover span {
+  text-shadow: var(--nous-primary-cta-text-shadow-hover);
+}
+
+.button span::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: calc(0% + var(--nous-primary-cta-border-width) / 2);
+  left: calc(0% + var(--nous-primary-cta-border-width) / 2);
+  display: block;
+  box-sizing: border-box;
+  width: calc(100% - var(--nous-primary-cta-border-width));
+  height: calc(100% - var(--nous-primary-cta-border-width));
+  overflow: clip;
+  border-radius: 999vw;
+  background: var(--nous-primary-cta-sheen-bg);
+  background-position: 0% 50%;
+  background-repeat: no-repeat;
+  background-size: 200% 200%;
+  mix-blend-mode: var(--nous-primary-cta-sheen-blend-mode);
+  pointer-events: none;
+  transition:
+    background-position calc(var(--nous-primary-cta-hover-time) * 1.25)
+      var(--nous-primary-cta-hover-ease),
+    --nous-primary-cta-angle-2 calc(var(--nous-primary-cta-hover-time) * 1.25)
+      var(--nous-primary-cta-hover-ease);
+}
+
+.button:hover span::after {
+  background-position: 25% 50%;
+}
+
+.button:active span::after {
+  --nous-primary-cta-angle-2: -15deg;
+  background-position: 50% 15%;
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  top: calc(0% - var(--nous-primary-cta-border-width) / 2);
+  left: calc(0% - var(--nous-primary-cta-border-width) / 2);
+  box-sizing: border-box;
+  width: calc(100% + var(--nous-primary-cta-border-width));
+  height: calc(100% + var(--nous-primary-cta-border-width));
+  padding: var(--nous-primary-cta-border-width);
+  border-radius: 999vw;
+  background:
+    conic-gradient(
+      from var(--nous-primary-cta-angle-1) at 50% 50%,
+      var(--nous-primary-cta-border-highlight),
+      var(--nous-primary-cta-border-transparent) 5% 40%,
+      var(--nous-primary-cta-border-highlight-mid, var(--nous-primary-cta-border-highlight)) 50%,
+      var(--nous-primary-cta-border-transparent) 60% 95%,
+      var(--nous-primary-cta-border-highlight)
+    ),
+    var(--nous-primary-cta-border-underlay);
+  box-shadow: var(--nous-primary-cta-border-shadow);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  transition:
+    all var(--nous-primary-cta-hover-time) var(--nous-primary-cta-hover-ease),
+    --nous-primary-cta-angle-1 500ms ease;
+}
+
+.button:hover::after {
+  --nous-primary-cta-angle-1: -125deg;
+}
+
+.button:active::after {
+  --nous-primary-cta-angle-1: -75deg;
+}
+
+.wrap:has(.button:hover) .shadow {
+  filter: blur(clamp(2px, 0.0625em, 6px));
+  transition: filter var(--nous-primary-cta-hover-time)
+    var(--nous-primary-cta-hover-ease);
+}
+
+.wrap:has(.button:hover) .shadow::after {
+  top: calc(var(--nous-primary-cta-shadow-cutoff) - 0.875em);
+  opacity: 0.4;
+}
+
+.wrap:has(.button:active) {
+  transform: rotate3d(1, 0, 0, 25deg);
+}
+
+.wrap:has(.button:active) .button {
+  box-shadow: var(--nous-primary-cta-shadow-active);
+}
+
+.wrap:has(.button:active) .shadow {
+  filter: blur(clamp(2px, 0.125em, 12px));
+}
+
+.wrap:has(.button:active) .shadow::after {
+  top: calc(var(--nous-primary-cta-shadow-cutoff) - 0.5em);
+  opacity: 0.4;
+}
+
+.wrap:has(.button:active) span {
+  text-shadow: var(--nous-primary-cta-text-shadow-active);
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .button span::after,
+  .button:active span::after {
+    --nous-primary-cta-angle-2: -45deg;
+  }
+
+  .button::after,
+  .button:hover::after,
+  .button:active::after {
+    --nous-primary-cta-angle-1: -75deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrap,
+  .button,
+  .button::after,
+  .button span,
+  .button span::after,
+  .edgeShine,
+  .edgeChannel,
+  .edgePrism,
+  .prism,
+  .edgePrism::before,
+  .edgePrism::after,
+  .prism::after,
+  .shadow,
+  .shadow::after {
+    transition: none;
+  }
+}

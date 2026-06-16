@@ -1,4 +1,4 @@
-# Nous Design System Baseline Audit
+# Nue Design System Baseline Audit
 
 Source specimen: `src/components/design-system/mockup/components`.
 

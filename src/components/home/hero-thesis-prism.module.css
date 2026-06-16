@@ -1,0 +1,36 @@
+.thesis {
+  position: relative;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--nous-page-title-fg);
+  font-weight: 500;
+}
+
+.thesis::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  pointer-events: none;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.thesis::after {
+  background-image: linear-gradient(
+    -45deg,
+    var(--nous-page-title-fg) 0%,
+    var(--nous-page-title-fg) 38%,
+    var(--nous-primary-cta-prism-red) 43%,
+    var(--nous-primary-cta-prism-green) 47%,
+    var(--nous-primary-cta-prism-blue) 51%,
+    var(--nous-primary-cta-prism-white) 53%,
+    var(--nous-page-title-fg) 58%,
+    var(--nous-page-title-fg) 100%
+  );
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  opacity: 1;
+}

@@ -29,7 +29,7 @@ permission:
   websearch: ask
 ---
 
-You are the Front End agent for the Nous marketing website.
+You are the Front End agent for the Nue marketing website.
 
 Your job is to build production-ready pages and components using Next.js App
 Router, React, TypeScript, Tailwind CSS, Vitest, and Playwright.

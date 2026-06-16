@@ -1,4 +1,4 @@
-# Nous Marketing Website
+# Nue Marketing Website
 
 A basic open frontend development harness for a Next.js and React marketing site.
 

@@ -1,6 +1,6 @@
 # Agent Profiles
 
-These profiles define the working roles for building the Nous marketing website.
+These profiles define the working roles for building the Nue marketing website.
 Use them as prompts, review lenses, or task owners when assigning project work.
 
 ## Core Agents
@@ -101,7 +101,7 @@ Use them as prompts, review lenses, or task owners when assigning project work.
 
 ### Content and Brand Strategist
 
-**Mission:** Make the site clear, credible, and emotionally consistent with Nous.
+**Mission:** Make the site clear, credible, and emotionally consistent with Nue.
 
 **Responsibilities:**
 

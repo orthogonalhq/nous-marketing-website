@@ -1,0 +1,40 @@
+.word {
+  display: inline-block;
+  width: 4.72em;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.09em;
+}
+
+.text {
+  font-family: var(--nous-font-sans);
+  font-size: 64px;
+  font-weight: 400;
+  letter-spacing: -3.2px;
+  text-rendering: geometricPrecision;
+}
+
+.edgeRed,
+.edgeGreen,
+.edgeBlue {
+  mix-blend-mode: var(--nous-primary-cta-edge-blend-mode);
+  opacity: 0.92;
+  filter: var(--nous-primary-cta-edge-filter);
+}
+
+.bodyShadow {
+  opacity: 0.65;
+}
+
+.edgeBlend {
+  mix-blend-mode: var(--nous-primary-cta-edge-blend-mode);
+}
+
+.edgeGreen {
+  opacity: 0.82;
+}
+
+.prismSweep {
+  mix-blend-mode: var(--nous-primary-cta-prism-blend-mode);
+  opacity: 0.42;
+}

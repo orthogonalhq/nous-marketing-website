@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { DesignSystemThemeShell } from "./design-system-theme-shell";
 import { WorkspaceMockup } from "./mockup/components";
 
 const tokenRows = [
@@ -34,14 +35,12 @@ const componentRows = [
 
 export function DesignSystemDoc() {
     return (
-        <main className="nous-design-system nous-app-chrome min-h-screen px-4 py-4 text-[var(--nous-fg-primary)] sm:px-6 lg:px-8">
-            <div className="mx-auto flex max-w-[1500px] flex-col gap-40">
-                <IntroBar />
-                <SpecimenSection />
-                <VisualComponentSystem />
-                <CompactTokenSystem />
-            </div>
-        </main>
+        <DesignSystemThemeShell>
+            <IntroBar />
+            <SpecimenSection />
+            <VisualComponentSystem />
+            <CompactTokenSystem />
+        </DesignSystemThemeShell>
     );
 }
 
@@ -52,7 +51,7 @@ function IntroBar() {
                 <div className="max-w-3xl">
                     <p className="nous-mono text-xs tracking-[0.02em] text-[var(--nous-accent-info)]">Design system</p>
                     <h1 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-[var(--nous-fg-title)] md:text-4xl">
-                        Nous app shell reference
+                        Nue app shell reference
                     </h1>
                     <p className="mt-2 text-sm leading-6 text-[var(--nous-fg-muted)]">
                         A quiet reference board for the workspace shell: first the specimen, then the visual components, then the compact token grammar.

@@ -1,6 +1,6 @@
 # AGENTS
 
-Routing file for AI agents working on the Nous marketing website.
+Routing file for AI agents working on the Nue marketing website.
 
 ## Project Context
 

@@ -1,0 +1,88 @@
+.mark {
+  --nous-logo-prism-opacity: var(--nous-primary-cta-prism-opacity, 0.56);
+  --nous-logo-edge-opacity: var(--nous-primary-cta-edge-opacity, 0.72);
+  display: block;
+  color: #fff;
+  overflow: visible;
+  transform: translate3d(0, 0, 0);
+}
+
+.base {
+  fill: currentcolor;
+  filter: drop-shadow(0 0 0.5px rgb(255 255 255 / 0.8));
+}
+
+.edgeRed,
+.edgeGreen,
+.edgeBlue,
+.prismRed,
+.prismGreen,
+.prismBlue,
+.sheen {
+  pointer-events: none;
+}
+
+.edgeRed,
+.edgeGreen,
+.edgeBlue {
+  opacity: var(--nous-logo-edge-opacity);
+  filter: var(--nous-primary-cta-edge-filter);
+  mix-blend-mode: var(--nous-primary-cta-edge-blend-mode);
+}
+
+.edgeRed {
+  fill: var(--nous-primary-cta-edge-red);
+  transform: translate(0.65px, 0.25px);
+}
+
+.edgeGreen {
+  fill: var(--nous-primary-cta-edge-green);
+  transform: translate(0.05px, 0.05px);
+}
+
+.edgeBlue {
+  fill: var(--nous-primary-cta-edge-blue);
+  transform: translate(-0.8px, -0.35px);
+}
+
+.prismRed,
+.prismGreen,
+.prismBlue {
+  opacity: var(--nous-logo-prism-opacity);
+  filter: var(--nous-primary-cta-prism-filter);
+  mix-blend-mode: var(--nous-primary-cta-prism-blend-mode);
+}
+
+.prismRed {
+  fill: var(--nous-primary-cta-prism-red);
+  transform: translate(-1.15px, -0.65px);
+}
+
+.prismGreen {
+  fill: var(--nous-primary-cta-prism-green);
+  transform: translate(0, 0.75px);
+}
+
+.prismBlue {
+  fill: var(--nous-primary-cta-prism-blue);
+  transform: translate(1px, -0.4px);
+}
+
+.sheen {
+  opacity: 0.72;
+  mix-blend-mode: var(--nous-primary-cta-sheen-blend-mode);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark,
+  .base,
+  .edgeRed,
+  .edgeGreen,
+  .edgeBlue,
+  .prismRed,
+  .prismGreen,
+  .prismBlue,
+  .sheen {
+    transition: none;
+  }
+}

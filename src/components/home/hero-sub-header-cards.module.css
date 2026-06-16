@@ -1,0 +1,475 @@
+@property --nous-hero-card-angle-1 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -75deg;
+}
+
+@property --nous-hero-card-angle-2 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -45deg;
+}
+
+@property --nous-hero-card-prism-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -75deg;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+  color: var(--nous-primary-cta-text);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  list-style: none;
+}
+
+.wrap {
+  --nous-hero-card-border-width: 1px;
+  --nous-hero-card-hover-time: 400ms;
+  --nous-hero-card-hover-ease: cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  border-radius: 6px;
+  background: transparent;
+  backdrop-filter: blur(4px);
+  transition:
+    transform var(--nous-hero-card-hover-time) var(--nous-hero-card-hover-ease),
+    backdrop-filter var(--nous-hero-card-hover-time) var(--nous-hero-card-hover-ease);
+}
+
+.card {
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--nous-primary-cta-bg);
+  box-shadow: var(--nous-primary-cta-shadow);
+  backdrop-filter: blur(24px) saturate(1.2);
+  transform: translate3d(0, 0, 0);
+  transition:
+    transform var(--nous-hero-card-hover-time) var(--nous-hero-card-hover-ease),
+    box-shadow var(--nous-hero-card-hover-time) var(--nous-hero-card-hover-ease);
+}
+
+.glassPanelWrap {
+  --nous-hero-card-border-width: 1px;
+  --nous-hero-card-hover-time: 400ms;
+  --nous-hero-card-hover-ease: cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
+  z-index: 2;
+  display: block;
+  border-radius: 14px;
+  background: transparent;
+  backdrop-filter: blur(6px);
+  isolation: isolate;
+}
+
+.glassPanelCard {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  border-radius: inherit;
+  background: var(--nous-task-proposal-glass-bg);
+  box-shadow: var(--nous-task-proposal-glass-shadow);
+  backdrop-filter: blur(24px) saturate(1.2);
+  transform: translate3d(0, 0, 0);
+}
+
+.glassPanelCard::before {
+  content: none;
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    /* radial-gradient(
+      ellipse 110% 90% at 20% 0%,
+      rgba(255, 255, 255, 0.07),
+      transparent 54%
+    ), */
+    var(--nous-primary-cta-sheen-bg);
+  background-position: 0% 50%;
+  background-repeat: no-repeat;
+  background-size: 180% 180%;
+  mix-blend-mode: var(--nous-primary-cta-sheen-blend-mode);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.glassPanelCard::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: calc(var(--nous-hero-card-border-width) / -2);
+  box-sizing: border-box;
+  padding: var(--nous-hero-card-border-width);
+  border-radius: inherit;
+  background:
+    conic-gradient(
+      from var(--nous-hero-card-angle-1) at 50% 50%,
+      var(--nous-primary-cta-border-highlight),
+      var(--nous-primary-cta-border-transparent) 5% 40%,
+      var(
+          --nous-primary-cta-border-highlight-mid,
+          var(--nous-primary-cta-border-highlight)
+        )
+        50%,
+      var(--nous-primary-cta-border-transparent) 60% 95%,
+      var(--nous-primary-cta-border-highlight)
+    ),
+    var(--nous-primary-cta-border-underlay);
+  box-shadow: var(--nous-primary-cta-border-shadow);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.glassPanelContent {
+  position: relative;
+  z-index: 6;
+}
+
+.glassPanelWrap .edgeShine,
+.glassPanelWrap .edgePrism,
+.glassPanelWrap .prism,
+.glassPanelWrap .shadow {
+  border-radius: inherit;
+}
+
+.glassPanelWrap .edgePrism {
+  opacity: calc(var(--nous-primary-cta-prism-opacity) * 0.6);
+}
+
+.glassPanelWrap .prism {
+  opacity: calc(var(--nous-primary-cta-prism-opacity) * 0.5);
+}
+
+.glassPanelWrap .prism::after {
+  background-size: 170% 170%;
+  opacity: 0.17;
+}
+
+.highlight .card {
+  box-shadow: var(--nous-primary-cta-shadow-hover);
+}
+
+.label {
+  position: relative;
+  z-index: 2;
+  display: block;
+  padding: 0.55rem 0.875rem;
+  color: var(--nous-primary-cta-text);
+  font-weight: 600;
+  line-height: 1;
+  text-shadow: var(--nous-primary-cta-text-shadow);
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: text-shadow var(--nous-hero-card-hover-time)
+    var(--nous-hero-card-hover-ease);
+}
+
+.highlight .label {
+  text-shadow: var(--nous-primary-cta-text-shadow-hover);
+}
+
+.label::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  inset: calc(var(--nous-hero-card-border-width) / 2);
+  border-radius: 6px;
+  background: var(--nous-primary-cta-sheen-bg);
+  background-position: 0% 50%;
+  background-repeat: no-repeat;
+  background-size: 200% 200%;
+  mix-blend-mode: var(--nous-primary-cta-sheen-blend-mode);
+  pointer-events: none;
+  transition:
+    background-position calc(var(--nous-hero-card-hover-time) * 1.25)
+      var(--nous-hero-card-hover-ease),
+    --nous-hero-card-angle-2 calc(var(--nous-hero-card-hover-time) * 1.25)
+      var(--nous-hero-card-hover-ease);
+}
+
+.highlight .label::after {
+  background-position: 25% 50%;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: calc(var(--nous-hero-card-border-width) / -2);
+  box-sizing: border-box;
+  padding: var(--nous-hero-card-border-width);
+  border-radius: 6px;
+  background:
+    conic-gradient(
+      from var(--nous-hero-card-angle-1) at 50% 50%,
+      var(--nous-primary-cta-border-highlight),
+      var(--nous-primary-cta-border-transparent) 5% 40%,
+      var(
+          --nous-primary-cta-border-highlight-mid,
+          var(--nous-primary-cta-border-highlight)
+        )
+        50%,
+      var(--nous-primary-cta-border-transparent) 60% 95%,
+      var(--nous-primary-cta-border-highlight)
+    ),
+    var(--nous-primary-cta-border-underlay);
+  box-shadow: var(--nous-primary-cta-border-shadow);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: --nous-hero-card-angle-1 500ms ease;
+}
+
+.highlight .card::after {
+  --nous-hero-card-angle-1: -125deg;
+}
+
+.edgeShine,
+.edgePrism,
+.prism,
+.shadow {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 6px;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+}
+
+.edgeShine {
+  z-index: 4;
+  opacity: var(--nous-primary-cta-edge-opacity);
+  filter: var(--nous-primary-cta-edge-filter);
+  mix-blend-mode: var(--nous-primary-cta-edge-blend-mode);
+  transition:
+    opacity var(--nous-hero-card-hover-time) var(--nous-hero-card-hover-ease),
+    transform var(--nous-hero-card-hover-time) var(--nous-hero-card-hover-ease);
+}
+
+.edgeChannel {
+  --nous-hero-card-prism-angle: -125deg;
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  padding: 1px;
+  border-radius: inherit;
+  mix-blend-mode: var(--nous-primary-cta-edge-blend-mode);
+  opacity: var(--nous-primary-cta-edge-channel-opacity);
+  box-shadow: var(--nous-primary-cta-border-shadow);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  transition: --nous-hero-card-prism-angle 500ms ease;
+}
+
+.edgeChannelRed {
+  background: conic-gradient(
+    from var(--nous-hero-card-prism-angle) at calc(50% + 0.65px) calc(50% + 0.25px),
+    var(--nous-primary-cta-edge-red),
+    transparent 5% 40%,
+    var(--nous-primary-cta-edge-red) 50%,
+    transparent 60% 95%,
+    var(--nous-primary-cta-edge-red)
+  );
+}
+
+.edgeChannelGreen {
+  background: conic-gradient(
+    from var(--nous-hero-card-prism-angle) at calc(50% + 0.05px) calc(50% + 0.05px),
+    var(--nous-primary-cta-edge-green),
+    transparent 5% 40%,
+    var(--nous-primary-cta-edge-green) 50%,
+    transparent 60% 95%,
+    var(--nous-primary-cta-edge-green)
+  );
+}
+
+.edgeChannelBlue {
+  background: conic-gradient(
+    from var(--nous-hero-card-prism-angle) at calc(50% - 1px) calc(50% - 0.45px),
+    var(--nous-primary-cta-edge-blue),
+    transparent 5% 40%,
+    var(--nous-primary-cta-edge-blue) 50%,
+    transparent 60% 95%,
+    var(--nous-primary-cta-edge-blue)
+  );
+}
+
+.edgePrism,
+.prism {
+  z-index: 5;
+  opacity: var(--nous-primary-cta-prism-opacity-hover);
+  filter: var(--nous-primary-cta-prism-filter);
+  mix-blend-mode: var(--nous-primary-cta-prism-blend-mode);
+  transition:
+    opacity var(--nous-hero-card-hover-time) var(--nous-hero-card-hover-ease),
+    transform var(--nous-hero-card-hover-time) var(--nous-hero-card-hover-ease),
+    --nous-hero-card-prism-angle 500ms ease;
+}
+
+.edgePrism::before,
+.prism::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.edgePrism::before {
+  inset: -1.5px;
+  padding: 1.5px;
+  background:
+    conic-gradient(
+      from var(--nous-hero-card-prism-angle) at calc(50% - 1.25px) calc(50% - 0.75px),
+      var(--nous-primary-cta-prism-red),
+      transparent 5% 42%,
+      var(--nous-primary-cta-prism-red) 50%,
+      transparent 58% 95%,
+      var(--nous-primary-cta-prism-red)
+    ),
+    conic-gradient(
+      from var(--nous-hero-card-prism-angle) at 50% calc(50% + 1px),
+      var(--nous-primary-cta-prism-green),
+      transparent 5% 42%,
+      var(--nous-primary-cta-prism-green) 50%,
+      transparent 58% 95%,
+      var(--nous-primary-cta-prism-green)
+    ),
+    conic-gradient(
+      from var(--nous-hero-card-prism-angle) at calc(50% + 1.25px) calc(50% - 0.5px),
+      var(--nous-primary-cta-prism-blue),
+      transparent 5% 42%,
+      var(--nous-primary-cta-prism-blue) 50%,
+      transparent 58% 95%,
+      var(--nous-primary-cta-prism-blue)
+    );
+  background-blend-mode: screen, screen, normal;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.prism::after {
+  inset: 0;
+  background: linear-gradient(
+    var(--nous-hero-card-angle-2),
+    transparent 0%,
+    transparent 38%,
+    var(--nous-primary-cta-prism-red) 43%,
+    var(--nous-primary-cta-prism-green) 47%,
+    var(--nous-primary-cta-prism-blue) 51%,
+    var(--nous-primary-cta-prism-white) 53%,
+    transparent 58%,
+    transparent 100%
+  );
+  background-position: 25% 50%;
+  background-repeat: no-repeat;
+  background-size: 220% 220%;
+  opacity: 0.42;
+  transform: translateX(0.75px);
+  transition:
+    background-position calc(var(--nous-hero-card-hover-time) * 1.25)
+      var(--nous-hero-card-hover-ease),
+    transform calc(var(--nous-hero-card-hover-time) * 1.25)
+      var(--nous-hero-card-hover-ease),
+    --nous-hero-card-angle-2 calc(var(--nous-hero-card-hover-time) * 1.25)
+      var(--nous-hero-card-hover-ease);
+}
+
+/* .shadow {
+  --nous-hero-card-shadow-cutoff: 0.7rem;
+  z-index: 0;
+  inset: calc(var(--nous-hero-card-shadow-cutoff) / -2);
+  filter: blur(2px);
+  overflow: visible;
+  transition: filter var(--nous-hero-card-hover-time) var(--nous-hero-card-hover-ease);
+}
+
+.shadow::after {
+  content: "";
+  position: absolute;
+  inset: calc(var(--nous-hero-card-shadow-cutoff) + 0.0008rem) 0 0
+    calc(var(--nous-hero-card-shadow-cutoff) + 0.008rem);
+  box-sizing: border-box;
+  width: calc(100% - var(--nous-hero-card-shadow-cutoff));
+  height: calc(100% - var(--nous-hero-card-shadow-cutoff));
+  padding: 0.125rem;
+  border-radius: 6px;
+  background: var(--nous-primary-cta-shadow-ring-bg);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.42;
+  transition: opacity var(--nous-hero-card-hover-time) var(--nous-hero-card-hover-ease);
+} */
+
+.highlight .edgeChannel,
+.highlight .edgePrism {
+  --nous-hero-card-prism-angle: -75deg;
+}
+
+.highlight .edgePrism {
+  opacity: var(--nous-primary-cta-prism-opacity);
+}
+
+.highlight .prism {
+  opacity: var(--nous-primary-cta-prism-opacity);
+}
+
+.highlight .prism::after {
+  background-position: 0% 50%;
+  transform: translateX(-0.75px);
+}
+
+.highlight .shadow {
+  filter: blur(1px);
+}
+
+.highlight .shadow::after {
+  opacity: 0.36;
+}
+
+.borderSubtle .card::after,
+.borderSubtle .edgeShine,
+.borderSubtle .edgePrism {
+  opacity: 0.2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrap,
+  .card,
+  .card::after,
+  .label,
+  .label::after,
+  .edgeShine,
+  .edgeChannel,
+  .edgePrism,
+  .prism,
+  .prism::after,
+  .shadow,
+  .shadow::after {
+    transition: none;
+  }
+}

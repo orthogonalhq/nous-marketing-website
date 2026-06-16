@@ -1,3 +1,86 @@
+@property --nous-workflow-node-active-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -75deg;
+}
+
+@property --nous-workflow-node-active-prism-band-start {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+
+@property --nous-workflow-node-active-prism-seam-band-end {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@property --nous-workflow-node-active-prism-seam-core-end {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@property --nous-workflow-node-active-prism-core-start {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+
+@property --nous-workflow-node-active-prism-core-end {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+
+@property --nous-workflow-node-active-prism-band-end {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+
+@property --nous-workflow-node-active-prism-seam-band-start {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+
+@property --nous-workflow-node-active-prism-seam-core-start {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+
+@keyframes nous-workflow-node-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes nous-workflow-placeholder-click {
+  0% {
+    transform: scale(1);
+    opacity: 0.86;
+  }
+
+  44% {
+    transform: scale(0.78);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.08);
+    opacity: 0;
+  }
+}
+
 :root,
 .nous-app-theme,
 .nous-design-system {
@@ -88,11 +171,596 @@
   --nous-drawer-command-toolbar-padding-y: 4px;
   --nous-drawer-command-actions-gap: 12px;
   --nous-drawer-caret-height: 1.15em;
+
+  --nous-home-chat-frame-width: 1120px;
+  --nous-home-chat-frame-height: 486px;
+  --nous-home-chat-component-mask: radial-gradient(
+    ellipse 100% 120% at 45% -18%,
+    #000 0%,
+    #000 50%,
+    rgba(0, 0, 0, 0.65) 80%,
+    rgba(0, 0, 0, 0.01) 100%,
+    transparent 100%
+  );
+  --nous-home-chat-canvas-top: 21px;
+  --nous-home-chat-canvas-bottom: 34px;
+  --nous-home-chat-canvas-left: 348px;
+  --nous-home-chat-canvas-radius: var(--nous-radius-lg);
+  --nous-home-chat-canvas-bg: var(--nous-bg-canvas);
+  --nous-home-chat-canvas-bg-size: auto;
+  --nous-home-chat-canvas-radial-bg: radial-gradient(
+    ellipse 1200px 600px at 30% 0%,
+    rgba(255, 255, 255, 0.01) 0%,
+    rgba(255, 255, 255, 0.004) 38%,
+    transparent 62%
+  );
+  --nous-home-chat-canvas-content-padding-x: 28px;
+  --nous-home-chat-canvas-highlight-bg: radial-gradient(
+    ellipse 200% 200% at 50% 0%,
+    rgba(255, 255, 255, 0.0198),
+    transparent 34%
+  );
+  --nous-home-chat-canvas-highlight-mask: radial-gradient(
+    ellipse 200% 200% at 50% 0%,
+    #000 0%,
+    transparent 34%
+  );
+  --nous-home-chat-greeting-padding-top: 100px;
+  --nous-home-chat-greeting-font-size: 2.15rem;
+  --nous-home-chat-greeting-font-weight: 300;
+  --nous-home-chat-greeting-letter-spacing: -0.045em;
+  --nous-home-chat-composer-width: 650px;
+  --nous-home-chat-composer-active-width: var(--nous-home-chat-transcript-width);
+  --nous-home-chat-composer-margin-top: 70px;
+  --nous-home-chat-composer-active-margin-bottom: 22px;
+  --nous-home-chat-command-min-height: 88px;
+  --nous-home-chat-command-compact-height: 42px;
+  --nous-home-chat-command-font-size: 14px;
+  --nous-home-chat-command-compact-font-size: 12px;
+  --nous-home-chat-command-leading: 1.25rem;
+  --nous-home-chat-command-compact-leading: 1rem;
+  --nous-home-chat-command-compact-padding-x: 12px;
+  --nous-home-chat-command-compact-padding-top: 10px;
+  --nous-home-chat-command-compact-padding-bottom: 8px;
+  --nous-home-chat-command-text-max-height: 100px;
+  --nous-home-chat-command-compact-text-max-height: 80px;
+  --nous-home-chat-command-max-height: calc(
+    var(--nous-drawer-command-padding-y) + 8px +
+      var(--nous-home-chat-command-text-max-height)
+  );
+  --nous-home-chat-command-compact-max-height: calc(
+    var(--nous-home-chat-command-compact-padding-top) +
+      var(--nous-home-chat-command-compact-padding-bottom) +
+      var(--nous-home-chat-command-compact-text-max-height)
+  );
+  --nous-home-chat-command-toolbar-height: var(--nous-shell-topbar-height);
+  --nous-home-chat-command-toolbar-padding-x: 12px;
+  --nous-home-chat-command-toolbar-action-gap: var(--nous-control-gap);
+  --nous-home-chat-command-add-icon-width: 19px;
+  --nous-home-chat-command-add-icon-height: 19px;
+  --nous-home-chat-command-square-icon-width: 16px;
+  --nous-home-chat-command-square-icon-height: 16px;
+  --nous-home-chat-command-mic-icon-width: 14px;
+  --nous-home-chat-command-mic-icon-height: 14px;
+  --nous-home-chat-command-send-icon-width: 16px;
+  --nous-home-chat-command-send-icon-height: 16px;
+  --nous-home-chat-send-button-size: 26px;
+  --nous-home-chat-send-button-ready-bg: var(--nous-accent-info);
+  --nous-home-chat-send-button-ready-fg: #ffffff;
+  --nous-home-chat-send-button-ready-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08), 0 0 22px rgba(91, 124, 255, 0.24);
+  --nous-home-chat-transcript-top: 8px;
+  --nous-home-chat-transcript-composer-gap: 6px;
+  --nous-home-chat-transcript-bottom: calc(
+    var(--nous-home-chat-composer-active-margin-bottom) +
+      var(--nous-home-chat-command-compact-height) +
+      var(--nous-home-chat-command-toolbar-height) +
+      var(--nous-home-chat-transcript-composer-gap)
+  );
+  --nous-home-chat-transcript-width: 610px;
+  --nous-home-chat-transcript-scrollbar-gutter: 16px;
+  --nous-home-chat-transcript-gap: 10px;
+  --nous-home-chat-user-message-max-width: 520px;
+  --nous-home-chat-agent-message-max-width: 560px;
+  --nous-home-chat-message-radius: 16px;
+  --nous-home-chat-message-padding-x: 14px;
+  --nous-home-chat-message-padding-y: 10px;
+  --nous-home-chat-message-font-size: 13px;
+  --nous-home-chat-message-leading: 1.35rem;
+  --nous-home-chat-message-label-size: 9px;
+  --nous-home-chat-response-line-gap: 6px;
+  --nous-home-chat-response-section-gap: 12px;
+  --nous-home-chat-response-section-padding-top: 12px;
+  --nous-home-chat-response-paragraph-gap: 8px;
+  --nous-home-chat-response-title-margin-bottom: 8px;
+  --nous-home-chat-tool-list-margin-top: 8px;
+  --nous-home-chat-tool-row-gap: 5px;
+  --nous-home-chat-user-message-bg: var(--nous-message-bg);
+  --nous-home-chat-agent-message-bg: rgba(255, 255, 255, 0.045);
+  --nous-home-chat-tool-call-wave-bg: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 28%,
+    rgba(215, 220, 226, 0.08) 39%,
+    rgba(238, 241, 245, 0.26) 50%,
+    rgba(215, 220, 226, 0.08) 61%,
+    rgba(255, 255, 255, 0) 72%,
+    transparent 100%
+  );
+  --nous-home-chat-task-proposal-glass-bg: transparent;
+  --nous-home-chat-task-proposal-glass-shadow:
+    inset 0 -0.125em 0.125em rgba(0, 0, 0, 0.5),
+    0 0 0.1em 0.18em inset rgba(0, 0, 0, 0.2);
+  --nous-home-chat-task-proposal-summary-hover-bg: rgba(255, 255, 255, 0.025);
+  --nous-home-chat-task-proposal-chip-hover-bg: rgba(255, 255, 255, 0.04);
+  --nous-home-chat-task-proposal-details-bg: rgba(255, 255, 255, 0.015);
+  --nous-home-chat-task-proposal-details-border: var(--nous-stroke-default);
+  --nous-home-chat-task-proposal-divider: rgba(255, 255, 255, 0.055);
+  --nous-home-chat-task-proposal-separator-highlight: rgba(255, 255, 255, 0.04);
+  --nous-home-chat-task-proposal-separator-shadow: rgba(0, 0, 0, 0.2);
+  --nous-home-chat-task-proposal-actions-bg: transparent;
+  --nous-home-chat-task-proposal-action-highlight: rgba(255, 255, 255, 0.08);
+  --nous-home-chat-task-proposal-primary-action-bg: rgba(91, 124, 255, 0.14);
+  --nous-home-chat-task-proposal-primary-action-border: rgba(122, 148, 255, 0.28);
+  --nous-home-chat-task-proposal-primary-action-fg: var(--nous-accent-info-fg-strong);
+  --nous-home-chat-task-proposal-primary-action-hover-bg: rgba(91, 124, 255, 0.2);
+  --nous-home-chat-task-proposal-primary-action-hover-border: rgba(122, 148, 255, 0.42);
+  --nous-home-chat-task-proposal-secondary-action-bg: var(--nous-control-bg-soft);
+  --nous-home-chat-task-proposal-secondary-action-border: var(--nous-stroke-soft);
+  --nous-home-chat-task-proposal-secondary-action-fg: var(--nous-drawer-body-fg-strong);
+  --nous-home-chat-task-proposal-secondary-action-hover-bg: var(
+    --nous-bg-selected-subtle
+  );
+  --nous-home-chat-task-proposal-secondary-action-hover-border: var(
+    --nous-stroke-subtle
+  );
+  --nous-home-chat-task-proposal-tertiary-action-bg: transparent;
+  --nous-home-chat-task-proposal-tertiary-action-fg: var(--nous-drawer-meta-fg);
+  --nous-home-chat-task-proposal-tertiary-action-hover-bg: var(--nous-control-bg-soft);
+  --nous-home-chat-task-proposal-tertiary-action-hover-fg: var(
+    --nous-drawer-body-fg-strong
+  );
+  --nous-home-chat-typing-padding-x: 11px;
+  --nous-home-chat-typing-padding-y: 8px;
+  --nous-home-chat-typing-dot-size: 4px;
+  --nous-home-chat-typing-dot-gap: 4px;
+  --nous-home-chat-sidebar-width: 364px;
+  --nous-home-chat-sidebar-radius: var(--nous-drawer-message-radius);
+  --nous-home-chat-sidebar-bg: #050505;
+  --nous-home-chat-sidebar-radial-bg: radial-gradient(
+    circle 400px at 100% 0%,
+    rgba(255, 255, 255, 0.01) 0%,
+    rgba(255, 255, 255, 0.004) 38%,
+    transparent 62%
+  );
+  --nous-home-chat-sidebar-radial-mask: radial-gradient(
+    circle 100% at 0% 0%,
+    #000 0%,
+    rgba(0, 0, 0, 0.4) 38%,
+    transparent 62%
+  );
+  --nous-home-chat-sidebar-shadow: 8px 8px 14px 7px rgba(0, 0, 0, 0.1);
+  --nous-home-chat-sidebar-outline-color: rgba(255, 255, 255, 0.35);
+  --nous-home-chat-sidebar-outline-opacity: 0.1;
+  --nous-home-chat-sidebar-outline-mask: radial-gradient(
+    ellipse 120% 120% at 0% 0%,
+    #000 0%,
+    #000 24%,
+    transparent 72%
+  );
+  --nous-home-chat-sidebar-unfocused-mask: radial-gradient(
+    circle 600px at 100% 40%,
+    #000 0%,
+    #000 50%,
+    rgba(0, 0, 0, 0.74) 62%,
+    rgba(0, 0, 0, 0.15) 100%,
+    transparent 100%
+  );
+  --nous-home-chat-sidebar-unfocused-overlay-bg: radial-gradient(
+    ellipse 105% 92% at 0% 0%,
+    rgba(255, 255, 255, 0.025) 0%,
+    rgba(255, 255, 255, 0.006) 42%,
+    rgba(0, 0, 0, 0.16) 100%
+  );
+  --nous-home-chat-sidebar-unfocused-overlay-opacity: 1;
+  --nous-home-chat-sidebar-unfocused-content-opacity: 0.68;
+  --nous-home-chat-sidebar-padding-x: var(--nous-sidebar-padding-x);
+  --nous-home-chat-sidebar-header-padding-top: 25px;
+  --nous-home-chat-sidebar-header-padding-bottom: 12px;
+  --nous-home-chat-sidebar-title-font-family: var(--nous-font-agent-mono);
+  --nous-home-chat-sidebar-title-size: 16px;
+  --nous-home-chat-sidebar-body-padding-top: 12px;
+  --nous-home-chat-sidebar-body-padding-bottom: 20px;
+  --nous-home-chat-nav-section-gap: 24px;
+  --nous-home-chat-nav-font-size: 14px;
+  --nous-home-chat-nav-letter-spacing: -0.018em;
+  --nous-home-chat-thread-gap: 8px;
+  --nous-home-chat-thread-padding-top: 2px;
+  --nous-home-chat-sidebar-footer-height: 54px;
+  --nous-home-chat-user-avatar-size: 29px;
+  --nous-home-chat-user-avatar-bg: radial-gradient(
+    circle at 35% 25%,
+    #f6d3b5 0 18%,
+    #5fc3d1 19% 48%,
+    #101112 49%
+  );
+  --nous-home-chat-user-avatar-ring: rgba(255, 255, 255, 0.5);
+  --nous-home-chat-user-avatar-status-size: 7px;
+  --nous-home-chat-user-avatar-status-bottom: 5px;
+  --nous-home-chat-user-avatar-status-right: 7px;
+  --nous-home-chat-user-avatar-status-bg: #272321;
+  --nous-home-chat-user-name-line-height: 14px;
+  --nous-home-chat-user-title-line-height: 12px;
+  --nous-home-chat-user-title-margin-top: 1px;
+  --nous-home-chat-icon-frame-size: 20px;
+  --nous-home-chat-header-icon-width: 14px;
+  --nous-home-chat-header-icon-height: 14px;
+  --nous-home-chat-sidebar-icon-width: 16px;
+  --nous-home-chat-sidebar-icon-height: 16px;
+  --nous-home-chat-footer-icon-width: 16px;
+  --nous-home-chat-footer-icon-height: 16px;
+  --nous-home-chat-icon-stroke-sidebar: var(--nous-icon-stroke-regular);
+  --nous-home-chat-icon-stroke-header: var(--nous-icon-stroke-regular);
+  --nous-home-chat-icon-stroke-command: var(--nous-icon-stroke-regular);
+  --nous-home-chat-icon-stroke-send: var(--nous-icon-stroke-regular);
+
+  /* Product-neutral conversation aliases. These stay mapped to the
+     homepage mockup values while reusable chat components migrate away from
+     --nous-home-chat-* names without visual changes. */
+  --nous-chat-canvas-bg: var(--nous-home-chat-canvas-bg);
+  --nous-chat-canvas-radial-bg: var(--nous-home-chat-canvas-radial-bg);
+  --nous-chat-transcript-gap: var(--nous-home-chat-transcript-gap);
+  --nous-chat-message-radius: var(--nous-home-chat-message-radius);
+  --nous-chat-message-padding-x: var(--nous-home-chat-message-padding-x);
+  --nous-chat-message-padding-y: var(--nous-home-chat-message-padding-y);
+  --nous-chat-message-font-size: var(--nous-home-chat-message-font-size);
+  --nous-chat-message-leading: var(--nous-home-chat-message-leading);
+  --nous-chat-message-label-size: var(--nous-home-chat-message-label-size);
+  --nous-chat-message-fg: var(--nous-message-fg);
+  --nous-chat-message-fg-strong: var(--nous-drawer-body-fg-strong);
+  --nous-chat-message-bg-user: var(--nous-home-chat-user-message-bg);
+  --nous-chat-message-bg-assistant: var(--nous-home-chat-agent-message-bg);
+  --nous-chat-message-max-width-user: var(--nous-home-chat-user-message-max-width);
+  --nous-chat-message-max-width-assistant: 21rem;
+  --nous-chat-typing-padding-x: var(--nous-home-chat-typing-padding-x);
+  --nous-chat-typing-padding-y: var(--nous-home-chat-typing-padding-y);
+  --nous-chat-typing-dot-size: var(--nous-home-chat-typing-dot-size);
+  --nous-chat-typing-dot-gap: var(--nous-home-chat-typing-dot-gap);
+
+  --nous-assistant-response-line-gap: var(--nous-home-chat-response-line-gap);
+  --nous-assistant-response-section-gap: var(--nous-home-chat-response-section-gap);
+  --nous-assistant-response-section-padding-top: var(
+    --nous-home-chat-response-section-padding-top
+  );
+  --nous-assistant-response-paragraph-gap: var(--nous-home-chat-response-paragraph-gap);
+  --nous-assistant-response-title-margin-bottom: var(
+    --nous-home-chat-response-title-margin-bottom
+  );
+
+  --nous-composer-bg: var(--nous-command-input-bg);
+  --nous-composer-placeholder-fg: var(--nous-command-input-placeholder-fg);
+  --nous-composer-min-height: var(--nous-home-chat-command-min-height);
+  --nous-composer-max-height: var(--nous-home-chat-command-max-height);
+  --nous-composer-compact-height: var(--nous-home-chat-command-compact-height);
+  --nous-composer-compact-max-height: var(
+    --nous-home-chat-command-compact-max-height
+  );
+  --nous-composer-font-size: var(--nous-home-chat-command-font-size);
+  --nous-composer-compact-font-size: var(--nous-home-chat-command-compact-font-size);
+  --nous-composer-leading: var(--nous-home-chat-command-leading);
+  --nous-composer-compact-leading: var(--nous-home-chat-command-compact-leading);
+  --nous-composer-compact-padding-x: var(--nous-home-chat-command-compact-padding-x);
+  --nous-composer-compact-padding-top: var(
+    --nous-home-chat-command-compact-padding-top
+  );
+  --nous-composer-compact-padding-bottom: var(
+    --nous-home-chat-command-compact-padding-bottom
+  );
+  --nous-composer-toolbar-height: var(--nous-home-chat-command-toolbar-height);
+  --nous-composer-toolbar-padding-x: var(--nous-home-chat-command-toolbar-padding-x);
+  --nous-composer-toolbar-action-gap: var(--nous-home-chat-command-toolbar-action-gap);
+  --nous-composer-send-button-size: var(--nous-home-chat-send-button-size);
+  --nous-composer-send-ready-bg: var(--nous-home-chat-send-button-ready-bg);
+  --nous-composer-send-ready-fg: var(--nous-home-chat-send-button-ready-fg);
+  --nous-composer-send-ready-shadow: var(--nous-home-chat-send-button-ready-shadow);
+
+  --nous-tool-call-list-margin-top: var(--nous-home-chat-tool-list-margin-top);
+  --nous-tool-call-row-gap: var(--nous-home-chat-tool-row-gap);
+  --nous-tool-call-wave-bg: var(--nous-home-chat-tool-call-wave-bg);
+  --nous-running-workflow-bg: color-mix(
+    in srgb,
+    var(--nous-accent-workspace) 8%,
+    transparent
+  );
+  --nous-running-workflow-fg: color-mix(
+    in srgb,
+    var(--nous-accent-workspace) 42%,
+    var(--nous-drawer-meta-fg)
+  );
+  --nous-running-workflow-icon-fg: color-mix(
+    in srgb,
+    var(--nous-accent-workspace) 68%,
+    var(--nous-icon-fg-muted)
+  );
+  --nous-running-workflow-muted-fg: color-mix(
+    in srgb,
+    var(--nous-accent-workspace) 24%,
+    var(--nous-drawer-meta-fg)
+  );
+  --nous-running-workflow-wave-bg: linear-gradient(
+    100deg,
+    var(--nous-drawer-meta-fg) 0%,
+    var(--nous-drawer-meta-fg) 42%,
+    color-mix(
+        in srgb,
+        var(--nous-drawer-meta-fg) 38%,
+        var(--nous-drawer-body-fg-strong)
+      )
+      50%,
+    var(--nous-drawer-meta-fg) 58%,
+    var(--nous-drawer-meta-fg) 100%
+  );
+
+  --nous-device-phone-max-width: 27rem;
+  --nous-device-phone-frame-radius: 2.55rem;
+  --nous-device-phone-screen-radius: 2rem;
+  --nous-device-phone-screen-min-height: 34rem;
+  --nous-device-phone-bezel-bg: var(--nous-home-chat-sidebar-bg);
+  --nous-device-phone-frame-border: var(--nous-stroke-default);
+  --nous-device-phone-screen-border: var(--nous-stroke-default);
+  --nous-device-phone-shadow: var(--nous-home-chat-sidebar-shadow);
+  --nous-device-phone-frame-padding: 0.5rem;
+  --nous-device-phone-notch-width: 6rem;
+  --nous-device-phone-notch-height: 1.5rem;
+  --nous-device-phone-camera-size: 0.375rem;
+  --nous-device-status-top: 1.15rem;
+  --nous-device-status-inset-x: 2rem;
+  --nous-device-status-height: 1rem;
+  --nous-device-status-font-size: 0.6875rem;
+
+  --nous-companion-surface-max-width: var(--nous-device-phone-max-width);
+  --nous-companion-tabs-gap: 0.25rem;
+  --nous-companion-tabs-padding: 0.25rem;
+  --nous-companion-tabs-margin-bottom: 0.75rem;
+  --nous-companion-header-gap: 0.75rem;
+  --nous-companion-header-padding-x: 1rem;
+  --nous-companion-header-padding-bottom: 0.75rem;
+  --nous-companion-header-padding-top: 2rem;
+  --nous-companion-avatar-size: 2.25rem;
+  --nous-companion-transcript-padding-x: 1rem;
+  --nous-companion-transcript-padding-y: 1rem;
+
+  --nous-workflow-run-bg: var(--nous-home-chat-sidebar-bg);
+  --nous-workflow-run-radial-bg: radial-gradient(
+    ellipse 800px 400px at 30% 0%,
+    rgba(255, 255, 255, 0.012) 0%,
+    rgba(255, 255, 255, 0.004) 38%,
+    transparent 62%
+  );
+  --nous-workflow-run-highlight-bg: none;
+  --nous-workflow-component-mask: radial-gradient(
+    ellipse 100% 100% at 20% 20%,
+    #000 0%,
+    #000 40%,
+    rgba(0, 0, 0, 0.75) 65%,
+    rgba(0, 0, 0, 0.15) 90%,
+    transparent 100%
+  );
+  --nous-workflow-run-min-height: 42rem;
+  --nous-workflow-panel-bg: var(--nous-workflow-run-bg);
+  --nous-workflow-panel-radial-bg: var(--nous-workflow-run-radial-bg);
+  --nous-workflow-graph-canvas-height: 25rem;
+  --nous-workflow-graph-canvas-min-width: 48rem;
+  --nous-workflow-graph-grid-size: 25px;
+  --nous-workflow-graph-grid-line: rgba(255, 255, 255, 0.025);
+  --nous-workflow-graph-grid-dot: rgba(255, 255, 255, 0.0825);
+  --nous-workflow-connector-stroke: rgba(255, 255, 255, 0.24);
+  --nous-workflow-connector-active-stroke: var(--nous-accent-info);
+  --nous-workflow-node-width: 12.5rem;
+  --nous-workflow-node-min-height: 6.25rem;
+  --nous-workflow-node-bg: #111212;
+  --nous-workflow-node-border: rgba(255, 255, 255, 0.105);
+  --nous-workflow-node-active-bg: var(--nous-workflow-node-bg);
+  --nous-workflow-node-active-border: var(--nous-workflow-node-border);
+  --nous-workflow-node-detail-fg: color-mix(
+    in srgb,
+    var(--nous-drawer-body-fg-strong) 88%,
+    var(--nous-fg-muted)
+  );
+  --nous-workflow-node-active-detail-fg: var(--nous-primary-cta-text);
+  --nous-workflow-node-title-fg: color-mix(
+    in srgb,
+    var(--nous-drawer-meta-fg) 96%,
+    var(--nous-fg-muted)
+  );
+  --nous-workflow-node-active-title-fg: var(--nous-primary-cta-text);
+  --nous-workflow-node-done-bg: var(--nous-workflow-node-bg);
+  --nous-workflow-node-done-border: var(--nous-workflow-node-border);
+  --nous-workflow-node-done-detail-fg: color-mix(
+    in srgb,
+    var(--nous-drawer-body-fg-strong) 94%,
+    var(--nous-fg-muted)
+  );
+  --nous-workflow-node-done-title-fg: color-mix(
+    in srgb,
+    var(--nous-drawer-meta-fg) 94%,
+    var(--nous-accent-info-fg-strong)
+  );
+  --nous-workflow-node-done-check-bg: var(--nous-accent-success);
+  --nous-workflow-node-done-check-border: transparent;
+  --nous-workflow-node-done-check-fg: #ffffff;
+  --nous-workflow-node-done-check-size: 1rem;
+  --nous-workflow-node-complete-bg: color-mix(
+    in srgb,
+    var(--nous-accent-success-bg) 34%,
+    var(--nous-workflow-node-bg)
+  );
+  --nous-workflow-node-complete-border: color-mix(
+    in srgb,
+    var(--nous-workflow-node-border) 78%,
+    var(--nous-accent-success) 22%
+  );
+  --nous-workflow-node-complete-detail-fg: color-mix(
+    in srgb,
+    var(--nous-accent-success-fg) 72%,
+    var(--nous-drawer-body-fg-strong)
+  );
+  --nous-workflow-node-complete-title-fg: var(--nous-accent-success-fg);
+  --nous-workflow-node-complete-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 0 0 1px var(--nous-workflow-node-complete-border),
+    var(--nous-workflow-node-shadow),
+    0 0 0 1px color-mix(in srgb, var(--nous-accent-success) 20%, transparent),
+    0 14px 34px color-mix(in srgb, var(--nous-accent-success) 10%, transparent);
+  --nous-workflow-node-padding-x: 0.625rem;
+  --nous-workflow-node-padding-y: 0.625rem;
+  --nous-workflow-node-icon-fg: color-mix(
+    in srgb,
+    var(--nous-icon-fg-muted) 64%,
+    transparent
+  );
+  --nous-workflow-node-icon-inset: var(--nous-workflow-node-padding-y);
+  --nous-workflow-node-icon-size: 0.6875rem;
+  --nous-workflow-node-placeholder-fg: color-mix(
+    in srgb,
+    var(--nous-workflow-node-border) 72%,
+    rgba(255, 255, 255, 0.62)
+  );
+  --nous-workflow-node-placeholder-size: 2rem;
+  --nous-workflow-node-placeholder-icon-size: 1rem;
+  --nous-workflow-subnode-placeholder-size: 1rem;
+  --nous-workflow-subnode-placeholder-icon-size: 0.5rem;
+  --nous-workflow-node-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.3),
+    2px 2px 0 rgba(0, 0, 0, 0.3);
+  --nous-workflow-node-active-shadow:
+    inset 0 0 0 1px var(--nous-workflow-node-active-border),
+    inset 0 0.125em 0.125em rgba(255, 255, 255, 0.0375),
+    inset 0 -0.125em 0.125em rgba(0, 0, 0, 0.5),
+    0 0 0.1em 0.25em inset rgba(0, 0, 0, 0.2),
+    var(--nous-workflow-node-shadow),
+    0 0 0 0 rgba(0, 0, 0, 1);
+  --nous-workflow-node-title-size: var(--nous-type-micro-xs);
+  --nous-workflow-node-title-weight: 500;
+  --nous-workflow-node-title-tracking: 0.01em;
+  --nous-workflow-node-title-padding-right: 1rem;
+  --nous-workflow-node-detail-margin-top: 0.45rem;
+  --nous-workflow-node-detail-size: var(--nous-type-micro-sm);
+  --nous-workflow-node-detail-weight: 500;
+  --nous-workflow-node-detail-leading: 1.3;
+  --nous-workflow-node-detail-tracking: -0.01em;
+  --nous-workflow-control-node-detail-gap: 0.5rem;
+  --nous-workflow-control-node-detail-width: 9rem;
+  --nous-workflow-tool-node-min-height: auto;
+  --nous-workflow-tool-node-padding-x: 0.625rem;
+  --nous-workflow-tool-node-padding-y: 0.625rem;
+  --nous-workflow-tool-node-radius: var(--nous-radius-lg);
+  --nous-workflow-tool-node-title-size: var(--nous-type-micro-xs);
+  --nous-workflow-tool-node-detail-size: var(--nous-type-micro-sm);
+  --nous-workflow-tool-node-done-check-bg: #475569;
+  --nous-workflow-tool-node-done-check-size: 0.75rem;
+  --nous-workflow-tool-node-done-check-icon-size: 0.5rem;
+  --nous-workflow-node-badge-bg: rgba(255, 255, 255, 0.045);
+  --nous-workflow-node-badge-border: rgba(255, 255, 255, 0.08);
+  --nous-workflow-node-badge-fg: var(--nous-fg-quieter);
+  --nous-workflow-node-badge-radius: 2px;
+  --nous-workflow-node-badge-padding-x: 0.3125rem;
+  --nous-workflow-node-badge-padding-y: 0.125rem;
+  --nous-workflow-node-badge-row-gap: 0.375rem;
+  --nous-workflow-node-badge-row-padding-top: 0.5rem;
+  --nous-workflow-connector-chip-bg: rgba(17, 18, 18, 0.3);
+  --nous-workflow-connector-chip-veil-bg: rgba(17, 18, 18, 0.46);
+  --nous-workflow-connector-chip-border: rgba(255, 255, 255, 0.1);
+  --nous-workflow-connector-chip-fg: var(--nous-fg-quieter);
+  --nous-workflow-connector-chip-radius: 2px;
+  --nous-workflow-connector-chip-padding-x: 0.3125rem;
+  --nous-workflow-connector-chip-padding-y: 0.0625rem;
+  --nous-workflow-connector-chip-blur: blur(18px) saturate(1.25);
+  --nous-workflow-stat-bg: rgba(255, 255, 255, 0.02);
+  --nous-workflow-callout-bg: var(--nous-task-proposal-primary-action-bg);
+  --nous-workflow-callout-border: var(--nous-task-proposal-primary-action-border);
+  --nous-workflow-callout-fg: var(--nous-task-proposal-primary-action-fg);
+  --nous-workflow-callout-dot-size: 0.5rem;
+  --nous-workflow-unfocused-opacity: 1;
+
+  --nous-task-proposal-glass-bg: var(--nous-home-chat-task-proposal-glass-bg);
+  --nous-task-proposal-glass-shadow: var(--nous-home-chat-task-proposal-glass-shadow);
+  --nous-task-proposal-summary-hover-bg: var(
+    --nous-home-chat-task-proposal-summary-hover-bg
+  );
+  --nous-task-proposal-chip-hover-bg: var(--nous-home-chat-task-proposal-chip-hover-bg);
+  --nous-task-proposal-details-bg: var(--nous-home-chat-task-proposal-details-bg);
+  --nous-task-proposal-details-border: var(
+    --nous-home-chat-task-proposal-details-border
+  );
+  --nous-task-proposal-divider: var(--nous-home-chat-task-proposal-divider);
+  --nous-task-proposal-separator-highlight: var(
+    --nous-home-chat-task-proposal-separator-highlight
+  );
+  --nous-task-proposal-separator-shadow: var(
+    --nous-home-chat-task-proposal-separator-shadow
+  );
+  --nous-task-proposal-actions-bg: var(--nous-home-chat-task-proposal-actions-bg);
+  --nous-task-proposal-action-highlight: var(
+    --nous-home-chat-task-proposal-action-highlight
+  );
+  --nous-task-proposal-primary-action-bg: var(
+    --nous-home-chat-task-proposal-primary-action-bg
+  );
+  --nous-task-proposal-primary-action-border: var(
+    --nous-home-chat-task-proposal-primary-action-border
+  );
+  --nous-task-proposal-primary-action-fg: var(
+    --nous-home-chat-task-proposal-primary-action-fg
+  );
+  --nous-task-proposal-primary-action-hover-bg: var(
+    --nous-home-chat-task-proposal-primary-action-hover-bg
+  );
+  --nous-task-proposal-primary-action-hover-border: var(
+    --nous-home-chat-task-proposal-primary-action-hover-border
+  );
+  --nous-task-proposal-secondary-action-bg: var(
+    --nous-home-chat-task-proposal-secondary-action-bg
+  );
+  --nous-task-proposal-secondary-action-border: var(
+    --nous-home-chat-task-proposal-secondary-action-border
+  );
+  --nous-task-proposal-secondary-action-fg: var(
+    --nous-home-chat-task-proposal-secondary-action-fg
+  );
+  --nous-task-proposal-secondary-action-hover-bg: var(
+    --nous-home-chat-task-proposal-secondary-action-hover-bg
+  );
+  --nous-task-proposal-secondary-action-hover-border: var(
+    --nous-home-chat-task-proposal-secondary-action-hover-border
+  );
+  --nous-task-proposal-tertiary-action-bg: var(
+    --nous-home-chat-task-proposal-tertiary-action-bg
+  );
+  --nous-task-proposal-tertiary-action-fg: var(
+    --nous-home-chat-task-proposal-tertiary-action-fg
+  );
+  --nous-task-proposal-tertiary-action-hover-bg: var(
+    --nous-home-chat-task-proposal-tertiary-action-hover-bg
+  );
+  --nous-task-proposal-tertiary-action-hover-fg: var(
+    --nous-home-chat-task-proposal-tertiary-action-hover-fg
+  );
   --nous-drawer-overlay-bg:
-    radial-gradient(ellipse 150% 150% at 108% -8%, rgba(102, 102, 102, 0.03) 0%, rgba(0, 0, 0, 0.03) 50%, rgba(0, 0, 0, 0.06) 100%),
+    radial-gradient(
+      ellipse 150% 150% at 108% -8%,
+      rgba(102, 102, 102, 0.03) 0%,
+      rgba(0, 0, 0, 0.03) 50%,
+      rgba(0, 0, 0, 0.06) 100%
+    ),
     var(--nous-bg-overlay-glass);
   --nous-drawer-floating-bg:
-    radial-gradient(ellipse 200% 200% at 100% 0%, rgba(102, 102, 102, 0.12) 0%, rgba(0, 0, 0, 0.03) 50%, rgba(0, 0, 0, 0.06) 100%),
+    radial-gradient(
+      ellipse 200% 200% at 100% 0%,
+      rgba(102, 102, 102, 0.12) 0%,
+      rgba(0, 0, 0, 0.03) 50%,
+      rgba(0, 0, 0, 0.06) 100%
+    ),
     var(--nous-bg-overlay-glass);
   --nous-updates-bottom-fade: linear-gradient(to bottom, rgba(6, 6, 6, 0), #060606);
   --nous-reference-panel-bg: rgba(25, 25, 25, 0.055);
@@ -142,6 +810,11 @@
   --nous-control-icon-size-md: 20px;
   --nous-control-icon-size-lg: 24px;
   --nous-control-icon-size-xl: 28px;
+  --nous-icon-stroke-hairline: 1.25;
+  --nous-icon-stroke-thin: 1.35;
+  --nous-icon-stroke-regular: 1.5;
+  --nous-icon-stroke-medium: 1.7;
+  --nous-icon-stroke-bold: 1.9;
   --nous-nav-icon-size: 18px;
   --nous-project-icon-size: 19px;
   --nous-rail-item-margin: 5px 4px;
@@ -184,6 +857,10 @@
   --nous-type-micro-xs: 10px;
   --nous-type-micro-sm: 11px;
   --nous-type-meta: 12px;
+  --nous-type-badge: var(--nous-type-micro-sm);
+  --nous-type-caption: var(--nous-type-micro-sm);
+  --nous-type-body-compact: 13px;
+  --nous-type-action: var(--nous-type-meta);
   --nous-type-section-title: 17px;
   --nous-type-page-title: 22px;
   --nous-leading-drawer: 1.28;
@@ -206,4 +883,1052 @@
   --asset-sidebar-section-header: var(--nous-fg-quieter);
   --asset-sidebar-item-bg: var(--nous-bg-selected-subtle);
   --context-area-tab-switcher-bg: rgba(25, 25, 25, 0.16);
+}
+
+.nous-design-system[data-nous-theme="light"] {
+  --nous-updates-bottom-fade: linear-gradient(
+    to bottom,
+    rgba(251, 250, 246, 0),
+    #fbfaf6
+  );
+  --nous-reference-panel-bg: rgba(255, 255, 255, 0.52);
+
+  --nous-control-bg-soft: rgba(30, 39, 52, 0.06);
+  --nous-sidebar-title-fg: var(--nous-fg-title);
+  --nous-home-chat-canvas-highlight-bg: radial-gradient(
+    ellipse 200% 200% at 50% 0%,
+    rgba(255, 255, 255, 0.132),
+    transparent 34%
+  );
+  --nous-home-chat-send-button-ready-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 22px rgba(50, 121, 249, 0.18);
+  --nous-home-chat-user-message-bg: var(--nous-message-bg);
+  --nous-home-chat-agent-message-bg: rgba(255, 255, 255, 0.7);
+  --nous-home-chat-tool-call-wave-bg: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 28%,
+    rgba(50, 121, 249, 0.05) 39%,
+    rgba(50, 121, 249, 0.16) 50%,
+    rgba(50, 121, 249, 0.05) 61%,
+    rgba(255, 255, 255, 0) 72%,
+    transparent 100%
+  );
+  --nous-home-chat-task-proposal-glass-shadow:
+    inset 0 0.125em 0.125em rgba(255, 255, 255, 0.42),
+    inset 0 -0.125em 0.125em rgba(50, 121, 249, 0.1),
+    0 0 0.1em 0.18em inset rgba(50, 121, 249, 0.055);
+  --nous-home-chat-task-proposal-summary-hover-bg: rgba(50, 121, 249, 0.045);
+  --nous-home-chat-task-proposal-chip-hover-bg: rgba(50, 121, 249, 0.07);
+  --nous-home-chat-task-proposal-details-bg: rgba(50, 121, 249, 0.025);
+  --nous-home-chat-task-proposal-details-border: var(--nous-stroke-subtle);
+  --nous-home-chat-task-proposal-divider: rgba(33, 34, 38, 0.08);
+  --nous-home-chat-task-proposal-separator-highlight: rgba(255, 255, 255, 0.7);
+  --nous-home-chat-task-proposal-separator-shadow: rgba(33, 34, 38, 0.1);
+  --nous-home-chat-task-proposal-actions-bg: transparent;
+  --nous-home-chat-task-proposal-action-highlight: rgba(255, 255, 255, 0.82);
+  --nous-home-chat-task-proposal-primary-action-bg: rgba(50, 121, 249, 0.1);
+  --nous-home-chat-task-proposal-primary-action-border: rgba(50, 121, 249, 0.2);
+  --nous-home-chat-task-proposal-primary-action-fg: var(--nous-accent-info);
+  --nous-home-chat-task-proposal-primary-action-hover-bg: rgba(50, 121, 249, 0.15);
+  --nous-home-chat-task-proposal-primary-action-hover-border: rgba(50, 121, 249, 0.3);
+  --nous-home-chat-task-proposal-secondary-action-bg: rgba(30, 39, 52, 0.035);
+  --nous-home-chat-task-proposal-secondary-action-border: rgba(30, 39, 52, 0.08);
+  --nous-home-chat-task-proposal-secondary-action-fg: var(--nous-fg-body-strong);
+  --nous-home-chat-task-proposal-secondary-action-hover-bg: rgba(30, 39, 52, 0.06);
+  --nous-home-chat-task-proposal-secondary-action-hover-border: rgba(30, 39, 52, 0.12);
+  --nous-home-chat-task-proposal-tertiary-action-bg: transparent;
+  --nous-home-chat-task-proposal-tertiary-action-fg: var(--nous-fg-subtle);
+  --nous-home-chat-task-proposal-tertiary-action-hover-bg: rgba(30, 39, 52, 0.045);
+  --nous-home-chat-task-proposal-tertiary-action-hover-fg: var(--nous-fg-body);
+  --nous-home-chat-canvas-radial-bg: radial-gradient(
+    ellipse 400px 800px at 0% 0%,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.03) 38%,
+    transparent 62%
+  );
+  --nous-home-chat-sidebar-bg: #f0efea;
+  --nous-home-chat-sidebar-shadow: 8px 8px 20px 4px rgba(31, 36, 44, 0.08);
+  --nous-home-chat-sidebar-radial-bg: radial-gradient(
+    circle 400px at 100% 0%,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.03) 38%,
+    transparent 62%
+  );
+  --nous-home-chat-sidebar-outline-color: rgba(33, 34, 38, 0.18);
+  --nous-workflow-stat-bg: rgba(30, 39, 52, 0.03);
+  --nous-home-chat-sidebar-unfocused-overlay-bg:
+    linear-gradient(
+      140deg,
+      rgba(255, 255, 255, 0.22) 0%,
+      rgba(255, 255, 255, 0) 36%,
+      rgba(30, 39, 52, 0.08) 100%
+    ),
+    radial-gradient(
+      ellipse 105% 92% at 0% 0%,
+      rgba(255, 255, 255, 0.32) 0%,
+      rgba(255, 255, 255, 0.08) 42%,
+      rgba(30, 39, 52, 0.08) 100%
+    );
+  --nous-home-chat-sidebar-unfocused-content-opacity: 0.72;
+  --nous-home-chat-user-avatar-ring: rgba(255, 255, 255, 0.86);
+
+  --nous-text-primary: var(--nous-fg-body);
+  --nous-text-secondary: var(--nous-fg-secondary);
+  --nous-text-muted: var(--nous-fg-muted);
+  --nous-text-faint: var(--nous-fg-subtle);
+  --hairline-strong: var(--nous-stroke-default);
+  --hairline-stroke: var(--nous-stroke-subtle);
+  --hairline-soft: var(--nous-stroke-soft);
+  --hairline-ghost: var(--nous-stroke-ghost);
+  --asset-sidebar-header: var(--nous-fg-title);
+  --asset-sidebar-section-header: var(--nous-fg-subtle);
+  --asset-sidebar-item-bg: var(--nous-bg-selected-subtle);
+  --context-area-tab-switcher-bg: rgba(30, 39, 52, 0.08);
+}
+
+.nous-design-system[data-nous-theme="rust"] {
+  --nous-updates-bottom-fade: linear-gradient(to bottom, rgba(16, 18, 15, 0), #10120f);
+  --nous-reference-panel-bg: rgba(184, 123, 69, 0.055);
+
+  --nous-control-bg-soft: rgba(184, 123, 69, 0.08);
+  --nous-sidebar-title-fg: var(--nous-fg-title);
+  --nous-home-chat-canvas-highlight-bg: radial-gradient(
+    ellipse 200% 200% at 50% 0%,
+    rgba(184, 123, 69, 0.0308),
+    transparent 34%
+  );
+  --nous-home-chat-send-button-ready-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08), 0 0 22px rgba(157, 122, 77, 0.24);
+  --nous-home-chat-user-message-bg: var(--nous-message-bg);
+  --nous-home-chat-agent-message-bg: rgba(184, 123, 69, 0.055);
+  --nous-home-chat-tool-call-wave-bg: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0) 28%,
+    rgba(239, 192, 144, 0.06) 39%,
+    rgba(239, 192, 144, 0.2) 50%,
+    rgba(239, 192, 144, 0.06) 61%,
+    rgba(0, 0, 0, 0) 72%,
+    transparent 100%
+  );
+  --nous-home-chat-task-proposal-glass-shadow:
+    inset 0 0.125em 0.125em rgba(239, 192, 144, 0.04),
+    inset 0 -0.125em 0.125em rgba(0, 0, 0, 0.62),
+    0 0 0.1em 0.18em inset rgba(0, 0, 0, 0.2);
+  --nous-home-chat-task-proposal-summary-hover-bg: rgba(184, 123, 69, 0.035);
+  --nous-home-chat-task-proposal-chip-hover-bg: rgba(184, 123, 69, 0.06);
+  --nous-home-chat-task-proposal-details-bg: rgba(184, 123, 69, 0.02);
+  --nous-home-chat-task-proposal-details-border: var(--nous-stroke-subtle);
+  --nous-home-chat-task-proposal-divider: rgba(179, 144, 108, 0.09);
+  --nous-home-chat-task-proposal-separator-highlight: rgba(239, 192, 144, 0.035);
+  --nous-home-chat-task-proposal-separator-shadow: rgba(0, 0, 0, 0.24);
+  --nous-home-chat-task-proposal-actions-bg: transparent;
+  --nous-home-chat-task-proposal-action-highlight: rgba(239, 192, 144, 0.055);
+  --nous-home-chat-task-proposal-primary-action-bg: rgba(184, 123, 69, 0.14);
+  --nous-home-chat-task-proposal-primary-action-border: rgba(239, 192, 144, 0.22);
+  --nous-home-chat-task-proposal-primary-action-fg: var(--nous-accent-info-fg-strong);
+  --nous-home-chat-task-proposal-primary-action-hover-bg: rgba(184, 123, 69, 0.2);
+  --nous-home-chat-task-proposal-primary-action-hover-border: rgba(239, 192, 144, 0.34);
+  --nous-home-chat-task-proposal-secondary-action-bg: rgba(184, 123, 69, 0.055);
+  --nous-home-chat-task-proposal-secondary-action-border: var(--nous-stroke-soft);
+  --nous-home-chat-task-proposal-secondary-action-fg: var(--nous-drawer-body-fg-strong);
+  --nous-home-chat-task-proposal-secondary-action-hover-bg: rgba(184, 123, 69, 0.09);
+  --nous-home-chat-task-proposal-secondary-action-hover-border: var(
+    --nous-stroke-subtle
+  );
+  --nous-home-chat-task-proposal-tertiary-action-bg: transparent;
+  --nous-home-chat-task-proposal-tertiary-action-fg: var(--nous-drawer-meta-fg);
+  --nous-home-chat-task-proposal-tertiary-action-hover-bg: rgba(184, 123, 69, 0.06);
+  --nous-home-chat-task-proposal-tertiary-action-hover-fg: var(
+    --nous-drawer-body-fg-strong
+  );
+  --nous-home-chat-canvas-radial-bg: radial-gradient(
+    ellipse 800px 400px at 0% 0%,
+    rgba(184, 123, 69, 0.04) 0%,
+    rgba(184, 123, 69, 0.018) 38%,
+    transparent 62%
+  );
+  --nous-home-chat-sidebar-bg: #0d0d0b;
+  --nous-home-chat-sidebar-radial-bg: radial-gradient(
+    circle 400px at 100% 0%,
+    rgba(184, 123, 69, 0.04) 0%,
+    rgba(184, 123, 69, 0.018) 38%,
+    transparent 62%
+  );
+  --nous-home-chat-sidebar-outline-color: rgba(184, 123, 69, 0.24);
+  --nous-workflow-stat-bg: rgba(184, 123, 69, 0.032);
+  --nous-home-chat-sidebar-unfocused-overlay-bg:
+    linear-gradient(
+      140deg,
+      rgba(184, 123, 69, 0.018) 0%,
+      rgba(184, 123, 69, 0) 36%,
+      rgba(0, 0, 0, 0.2) 100%
+    ),
+    radial-gradient(
+      ellipse 105% 92% at 0% 0%,
+      rgba(184, 123, 69, 0.06) 0%,
+      rgba(184, 123, 69, 0.022) 42%,
+      rgba(0, 0, 0, 0.14) 100%
+    );
+  --nous-home-chat-sidebar-unfocused-content-opacity: 0.7;
+  --nous-home-chat-user-avatar-ring: rgba(255, 255, 255, 0.42);
+
+  --nous-text-primary: var(--nous-fg-body);
+  --nous-text-secondary: var(--nous-fg-secondary);
+  --nous-text-muted: var(--nous-fg-muted);
+  --nous-text-faint: var(--nous-fg-subtle);
+  --hairline-strong: var(--nous-stroke-default);
+  --hairline-stroke: var(--nous-stroke-subtle);
+  --hairline-soft: var(--nous-stroke-soft);
+  --hairline-ghost: var(--nous-stroke-ghost);
+  --asset-sidebar-header: var(--nous-fg-title);
+  --asset-sidebar-section-header: var(--nous-fg-subtle);
+  --asset-sidebar-item-bg: var(--nous-bg-selected-subtle);
+  --context-area-tab-switcher-bg: rgba(184, 123, 69, 0.08);
+}
+
+.nous-home-chat-component-fade {
+  -webkit-mask-image: var(--nous-home-chat-component-mask);
+  mask-image: var(--nous-home-chat-component-mask);
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.nous-workflow-component-fade {
+  -webkit-mask-image: var(--nous-workflow-component-mask);
+  mask-image: var(--nous-workflow-component-mask);
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.nous-workflow-connector-active::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--nous-workflow-connector-active-stroke);
+  opacity: 0.45;
+}
+
+.nous-workflow-connector-horizontal::after {
+  transform-origin: left center;
+  animation: nous-workflow-connector-draw-x 520ms cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+.nous-workflow-connector-vertical::after {
+  transform-origin: center top;
+  animation: nous-workflow-connector-draw-y 520ms cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+.nous-workflow-connector-active[data-workflow-connector-segment-terminal="true"]::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 0;
+  height: 0;
+  filter: drop-shadow(0 0 6px var(--nous-workflow-connector-active-stroke));
+  opacity: 0.78;
+}
+
+.nous-workflow-connector-active[data-workflow-connector-segment-terminal="true"][data-workflow-connector-orientation="horizontal"]::before {
+  right: -0.25rem;
+  top: 50%;
+  border-bottom: 0.1875rem solid transparent;
+  border-left: 0.3125rem solid var(--nous-workflow-connector-active-stroke);
+  border-top: 0.1875rem solid transparent;
+  transform: translateY(-50%);
+}
+
+.nous-workflow-connector-active[data-workflow-connector-segment-terminal="true"][data-workflow-connector-orientation="vertical"]::before {
+  bottom: -0.25rem;
+  left: 50%;
+  border-left: 0.1875rem solid transparent;
+  border-right: 0.1875rem solid transparent;
+  border-top: 0.3125rem solid var(--nous-workflow-connector-active-stroke);
+  transform: translateX(-50%);
+}
+
+.nous-workflow-connector-path-active {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: nous-workflow-connector-path-draw 700ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.nous-workflow-connector-path-tool {
+  opacity: 0.72;
+  stroke-dasharray: 3 4;
+}
+
+.nous-workflow-connector-path-tool-active {
+  opacity: 0.9;
+  stroke-dasharray: 3 4;
+}
+
+.nous-workflow-connector-path-arrow {
+  fill: var(--nous-workflow-connector-stroke);
+  opacity: 1;
+}
+
+.nous-workflow-connector-path-arrow-active {
+  fill: var(--nous-workflow-connector-active-stroke);
+  filter: drop-shadow(0 0 6px var(--nous-workflow-connector-active-stroke));
+  opacity: 1;
+}
+
+.nous-workflow-node {
+  --nous-primary-cta-border-width: 1px;
+  --nous-workflow-node-active-prism-red-angle-offset: -4deg;
+  --nous-workflow-node-active-prism-green-angle-offset: 1.5deg;
+  --nous-workflow-node-active-prism-blue-angle-offset: 5deg;
+  --nous-workflow-node-active-prism-y-scale: 0.56;
+  box-shadow: var(--nous-workflow-node-shadow);
+  transition:
+    background 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    color 220ms ease,
+    text-shadow 220ms ease;
+  animation: nous-workflow-node-enter 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.nous-workflow-node-placeholder {
+  z-index: 8;
+  display: inline-grid;
+  place-items: center;
+  color: var(--nous-workflow-node-placeholder-fg);
+  opacity: 0.86;
+}
+
+.nous-workflow-node-placeholder-node {
+  width: var(--nous-workflow-node-placeholder-size);
+  height: var(--nous-workflow-node-placeholder-size);
+}
+
+.nous-workflow-node-placeholder-subnode {
+  width: var(--nous-workflow-subnode-placeholder-size);
+  height: var(--nous-workflow-subnode-placeholder-size);
+  margin-top: 0.4375rem;
+  margin-bottom: 0.4375rem;
+}
+
+.nous-workflow-node-placeholder-icon {
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+}
+
+.nous-workflow-node-placeholder-subnode .nous-workflow-node-placeholder-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.nous-workflow-node-placeholder[data-workflow-node-placeholder-state="pressed"]
+  .nous-workflow-node-placeholder-icon {
+  animation: nous-workflow-placeholder-click 220ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+
+.nous-workflow-node-tool {
+  min-height: var(--nous-workflow-tool-node-min-height);
+  border-radius: var(--nous-workflow-tool-node-radius);
+}
+
+.nous-workflow-node-shape-event,
+.nous-workflow-node-shape-gate {
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--nous-radius-pill);
+  padding: 0.625rem;
+  text-align: center;
+}
+
+.nous-workflow-node-shape-event [data-workflow-node-title="true"],
+.nous-workflow-node-shape-gate [data-workflow-node-title="true"] {
+  padding-right: 0;
+}
+
+.nous-workflow-node-shape-event [data-workflow-node-detail="true"],
+.nous-workflow-node-shape-gate [data-workflow-node-detail="true"] {
+  position: absolute;
+  top: calc(100% + var(--nous-workflow-control-node-detail-gap));
+  left: 50%;
+  width: var(--nous-workflow-control-node-detail-width);
+  margin-top: 0;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.nous-workflow-node-stack-item {
+  z-index: 0;
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.24),
+    1px 1px 0 rgba(0, 0, 0, 0.28);
+}
+
+.nous-workflow-node-stack-item.nous-workflow-node-done {
+  z-index: 1;
+}
+
+.nous-workflow-node-stack-item.nous-workflow-node-active,
+.nous-workflow-node-stack-item.nous-workflow-node-complete {
+  z-index: 2;
+}
+
+.nous-workflow-node-stack-first {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.nous-workflow-node-stack-middle {
+  margin-top: -1px;
+  border-radius: 0;
+}
+
+.nous-workflow-node-stack-last {
+  margin-top: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.nous-workflow-node-stack-only {
+  border-radius: var(--nous-workflow-tool-node-radius);
+}
+
+.nous-workflow-node-stack > :last-child {
+  border-bottom-right-radius: var(--nous-workflow-tool-node-radius);
+  border-bottom-left-radius: var(--nous-workflow-tool-node-radius);
+}
+
+.nous-workflow-node-stack > :first-child {
+  border-top-left-radius: var(--nous-workflow-tool-node-radius);
+  border-top-right-radius: var(--nous-workflow-tool-node-radius);
+}
+
+.nous-workflow-node-stack > :only-child {
+  border-radius: var(--nous-workflow-tool-node-radius);
+}
+
+.nous-workflow-connector-chip {
+  --nous-workflow-connector-chip-veil-inset-x: -0.25rem;
+  --nous-workflow-connector-chip-veil-inset-y: -0.1875rem;
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  isolation: isolate;
+  overflow: hidden;
+  -webkit-backdrop-filter: var(--nous-workflow-connector-chip-blur);
+  backdrop-filter: var(--nous-workflow-connector-chip-blur);
+  border: 1px solid var(--nous-workflow-connector-chip-border);
+  border-radius: var(--nous-workflow-connector-chip-radius);
+  background-color: var(--nous-workflow-connector-chip-bg);
+  padding: var(--nous-workflow-connector-chip-padding-y)
+    var(--nous-workflow-connector-chip-padding-x);
+  color: var(--nous-workflow-connector-chip-fg);
+  font-family: var(--nous-font-mono);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.nous-workflow-connector-chip::before {
+  content: "";
+  position: absolute;
+  inset: var(--nous-workflow-connector-chip-veil-inset-y)
+    var(--nous-workflow-connector-chip-veil-inset-x);
+  z-index: -1;
+  border-radius: calc(var(--nous-workflow-connector-chip-radius) + 3px);
+  background: var(--nous-workflow-connector-chip-veil-bg);
+  -webkit-backdrop-filter: var(--nous-workflow-connector-chip-blur);
+  backdrop-filter: var(--nous-workflow-connector-chip-blur);
+}
+
+.nous-workflow-node-port-chip {
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.nous-workflow-node-tool [data-workflow-node-title="true"] {
+  font-size: var(--nous-workflow-tool-node-title-size);
+}
+
+.nous-workflow-node-tool [data-workflow-node-detail="true"] {
+  font-size: var(--nous-workflow-tool-node-detail-size);
+  line-height: 1.35;
+}
+
+.nous-workflow-node-tool .nous-workflow-node-done-check {
+  right: 0.5rem;
+  top: 0.5rem;
+  width: var(--nous-workflow-tool-node-done-check-size);
+  height: var(--nous-workflow-tool-node-done-check-size);
+  background: var(--nous-workflow-tool-node-done-check-bg);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--nous-workflow-tool-node-done-check-bg) 20%, transparent),
+    0 0 8px color-mix(in srgb, var(--nous-workflow-tool-node-done-check-bg) 18%, transparent);
+}
+
+.nous-workflow-node-tool .nous-workflow-node-done-check svg {
+  width: var(--nous-workflow-tool-node-done-check-icon-size);
+  height: var(--nous-workflow-tool-node-done-check-icon-size);
+}
+
+.nous-workflow-node-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  border: 1px solid var(--nous-workflow-node-badge-border);
+  border-radius: var(--nous-workflow-node-badge-radius);
+  background: var(--nous-workflow-node-badge-bg);
+  padding: var(--nous-workflow-node-badge-padding-y)
+    var(--nous-workflow-node-badge-padding-x);
+  color: var(--nous-workflow-node-badge-fg);
+  font-family: var(--nous-font-mono);
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.nous-workflow-node-metadata {
+  margin-top: 0.5625rem;
+  gap: 0.25rem 0.5rem;
+  color: color-mix(
+    in srgb,
+    var(--nous-workflow-node-detail-fg) 68%,
+    transparent
+  );
+}
+
+.nous-workflow-node-metadata-item {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  color: currentColor;
+  font-family: var(--nous-font-mono);
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.nous-workflow-node-metadata-item + .nous-workflow-node-metadata-item::before {
+  content: "·";
+  margin-right: 0.5rem;
+  color: color-mix(
+    in srgb,
+    var(--nous-workflow-node-detail-fg) 42%,
+    transparent
+  );
+}
+
+.nous-workflow-node-active {
+  isolation: isolate;
+  background: var(--nous-workflow-node-active-bg);
+  border-color: var(--nous-workflow-node-active-border);
+  box-shadow: var(--nous-workflow-node-active-shadow);
+}
+
+.nous-workflow-node-done {
+  background: var(--nous-workflow-node-done-bg);
+  border-color: var(--nous-workflow-node-done-border);
+}
+
+.nous-workflow-node-done-check {
+  position: absolute;
+  right: 0.625rem;
+  top: 0.625rem;
+  z-index: 10;
+  display: grid;
+  width: var(--nous-workflow-node-done-check-size);
+  height: var(--nous-workflow-node-done-check-size);
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: var(--nous-workflow-node-done-check-bg);
+  color: var(--nous-workflow-node-done-check-fg);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--nous-accent-success) 18%, transparent),
+    0 0 10px color-mix(in srgb, var(--nous-accent-success) 16%, transparent);
+}
+
+.nous-workflow-node-done-check svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.nous-workflow-node-shape-event .nous-workflow-node-done-check,
+.nous-workflow-node-shape-gate .nous-workflow-node-done-check {
+  top: calc(14.64466094% - (var(--nous-workflow-node-done-check-size) / 2));
+  right: calc(14.64466094% - (var(--nous-workflow-node-done-check-size) / 2));
+}
+
+.nous-workflow-node-done [data-workflow-node-title="true"] {
+  color: var(--nous-workflow-node-done-title-fg);
+}
+
+.nous-workflow-node-done [data-workflow-node-detail="true"] {
+  color: var(--nous-workflow-node-done-detail-fg);
+}
+
+.nous-workflow-node-active-prism-border {
+  z-index: 2;
+  position: absolute;
+  inset: calc(var(--nous-primary-cta-border-width) / -2);
+  display: block;
+  overflow: hidden;
+  padding: var(--nous-primary-cta-border-width);
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: var(--nous-primary-cta-border-shadow);
+  filter: var(--nous-primary-cta-prism-filter);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  mix-blend-mode: var(--nous-primary-cta-prism-blend-mode);
+  opacity: 0;
+  transition:
+    opacity 420ms cubic-bezier(0.25, 1, 0.5, 1),
+    filter 420ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.nous-workflow-node-active .nous-workflow-node-active-prism-border {
+  opacity: 1;
+  animation: nous-workflow-node-active-prism-breath 2.4s ease-in-out 520ms infinite;
+}
+
+.nous-workflow-node-active-prism-gradient {
+  --nous-workflow-node-active-angle: -75deg;
+  --nous-workflow-node-active-prism-band-start: 50%;
+  --nous-workflow-node-active-prism-seam-band-end: 0%;
+  --nous-workflow-node-active-prism-seam-core-end: 0%;
+  --nous-workflow-node-active-prism-core-start: 50%;
+  --nous-workflow-node-active-prism-core-end: 50%;
+  --nous-workflow-node-active-prism-band-end: 50%;
+  --nous-workflow-node-active-prism-seam-band-start: 100%;
+  --nous-workflow-node-active-prism-seam-core-start: 100%;
+  position: absolute;
+  inset: -50% 0;
+  border-radius: inherit;
+  background:
+    conic-gradient(
+      from calc(
+        var(--nous-workflow-node-active-angle) +
+          var(--nous-workflow-node-active-prism-red-angle-offset)
+      ) at calc(50% - 1.25px) calc(50% - 0.75px),
+      var(--nous-primary-cta-prism-red) 0 var(--nous-workflow-node-active-prism-seam-core-end),
+      transparent var(--nous-workflow-node-active-prism-seam-band-end) var(--nous-workflow-node-active-prism-band-start),
+      var(--nous-primary-cta-prism-red) var(--nous-workflow-node-active-prism-core-start),
+      var(--nous-primary-cta-prism-red) var(--nous-workflow-node-active-prism-core-end),
+      transparent var(--nous-workflow-node-active-prism-band-end) var(--nous-workflow-node-active-prism-seam-band-start),
+      var(--nous-primary-cta-prism-red) var(--nous-workflow-node-active-prism-seam-core-start) 100%
+    ),
+    conic-gradient(
+      from calc(
+        var(--nous-workflow-node-active-angle) +
+          var(--nous-workflow-node-active-prism-green-angle-offset)
+      ) at 50% calc(50% + 1px),
+      var(--nous-primary-cta-prism-green) 0 var(--nous-workflow-node-active-prism-seam-core-end),
+      transparent var(--nous-workflow-node-active-prism-seam-band-end) var(--nous-workflow-node-active-prism-band-start),
+      var(--nous-primary-cta-prism-green) var(--nous-workflow-node-active-prism-core-start),
+      var(--nous-primary-cta-prism-green) var(--nous-workflow-node-active-prism-core-end),
+      transparent var(--nous-workflow-node-active-prism-band-end) var(--nous-workflow-node-active-prism-seam-band-start),
+      var(--nous-primary-cta-prism-green) var(--nous-workflow-node-active-prism-seam-core-start) 100%
+    ),
+    conic-gradient(
+      from calc(
+        var(--nous-workflow-node-active-angle) +
+          var(--nous-workflow-node-active-prism-blue-angle-offset)
+      ) at calc(50% + 1.25px) calc(50% - 0.5px),
+      var(--nous-primary-cta-prism-blue) 0 var(--nous-workflow-node-active-prism-seam-core-end),
+      transparent var(--nous-workflow-node-active-prism-seam-band-end) var(--nous-workflow-node-active-prism-band-start),
+      var(--nous-primary-cta-prism-blue) var(--nous-workflow-node-active-prism-core-start),
+      var(--nous-primary-cta-prism-blue) var(--nous-workflow-node-active-prism-core-end),
+      transparent var(--nous-workflow-node-active-prism-band-end) var(--nous-workflow-node-active-prism-seam-band-start),
+      var(--nous-primary-cta-prism-blue) var(--nous-workflow-node-active-prism-seam-core-start) 100%
+    ),
+    conic-gradient(
+      from var(--nous-workflow-node-active-angle) at 50% 50%,
+      var(--nous-primary-cta-border-highlight) 0 var(--nous-workflow-node-active-prism-seam-core-end),
+      var(--nous-primary-cta-border-transparent) var(--nous-workflow-node-active-prism-seam-band-end) var(--nous-workflow-node-active-prism-band-start),
+      var(
+        --nous-primary-cta-border-highlight-mid,
+        var(--nous-primary-cta-border-highlight)
+      ) var(--nous-workflow-node-active-prism-core-start),
+      var(
+        --nous-primary-cta-border-highlight-mid,
+        var(--nous-primary-cta-border-highlight)
+      ) var(--nous-workflow-node-active-prism-core-end),
+      var(--nous-primary-cta-border-transparent) var(--nous-workflow-node-active-prism-band-end) var(--nous-workflow-node-active-prism-seam-band-start),
+      var(--nous-primary-cta-border-highlight) var(--nous-workflow-node-active-prism-seam-core-start) 100%
+    ),
+    var(--nous-primary-cta-border-underlay);
+  background-blend-mode: screen, screen, screen, normal, normal;
+  opacity: 1;
+  transform: scaleY(var(--nous-workflow-node-active-prism-y-scale));
+  transform-origin: 50% 50%;
+  transition:
+    --nous-workflow-node-active-prism-band-start 520ms cubic-bezier(0.25, 1, 0.5, 1),
+    --nous-workflow-node-active-prism-seam-band-end 520ms cubic-bezier(0.25, 1, 0.5, 1),
+    --nous-workflow-node-active-prism-seam-core-end 520ms cubic-bezier(0.25, 1, 0.5, 1),
+    --nous-workflow-node-active-prism-core-start 520ms cubic-bezier(0.25, 1, 0.5, 1),
+    --nous-workflow-node-active-prism-core-end 520ms cubic-bezier(0.25, 1, 0.5, 1),
+    --nous-workflow-node-active-prism-band-end 520ms cubic-bezier(0.25, 1, 0.5, 1),
+    --nous-workflow-node-active-prism-seam-band-start 520ms cubic-bezier(0.25, 1, 0.5, 1),
+    --nous-workflow-node-active-prism-seam-core-start 520ms cubic-bezier(0.25, 1, 0.5, 1);
+  animation: nous-workflow-node-active-orbit 4.8s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+
+.nous-workflow-node-active .nous-workflow-node-active-prism-gradient {
+  --nous-workflow-node-active-prism-band-start: 32%;
+  --nous-workflow-node-active-prism-seam-band-end: 14%;
+  --nous-workflow-node-active-prism-seam-core-end: 3%;
+  --nous-workflow-node-active-prism-core-start: 47%;
+  --nous-workflow-node-active-prism-core-end: 53%;
+  --nous-workflow-node-active-prism-band-end: 68%;
+  --nous-workflow-node-active-prism-seam-band-start: 86%;
+  --nous-workflow-node-active-prism-seam-core-start: 97%;
+}
+
+.nous-workflow-node-active [data-workflow-node-title="true"] {
+  color: var(--nous-workflow-node-active-title-fg);
+  text-shadow: var(--nous-primary-cta-text-shadow);
+}
+
+.nous-workflow-node-active [data-workflow-node-detail="true"] {
+  color: var(--nous-workflow-node-active-detail-fg);
+  text-shadow: var(--nous-primary-cta-text-shadow);
+}
+
+.nous-workflow-node-complete {
+  background: var(--nous-workflow-node-complete-bg);
+  border-color: var(--nous-workflow-node-complete-border);
+  box-shadow: var(--nous-workflow-node-complete-shadow);
+}
+
+.nous-workflow-node-complete [data-workflow-node-title="true"] {
+  color: var(--nous-workflow-node-complete-title-fg);
+}
+
+.nous-workflow-node-complete [data-workflow-node-detail="true"] {
+  color: var(--nous-workflow-node-complete-detail-fg);
+}
+
+@keyframes nous-workflow-node-active-orbit {
+  from {
+    --nous-workflow-node-active-angle: -75deg;
+  }
+
+  to {
+    --nous-workflow-node-active-angle: 285deg;
+  }
+}
+
+@keyframes nous-workflow-node-active-breath {
+  0%,
+  100% {
+    opacity: 0.66;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes nous-workflow-node-active-prism-breath {
+  0%,
+  100% {
+    filter: var(--nous-primary-cta-prism-filter) brightness(0.9);
+  }
+
+  50% {
+    filter: var(--nous-primary-cta-prism-filter) brightness(1.12);
+  }
+}
+
+@keyframes nous-workflow-connector-draw-x {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes nous-workflow-connector-draw-y {
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes nous-workflow-connector-path-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes nous-workflow-connector-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes nous-workflow-connector-stroke-pulse {
+  0%,
+  100% {
+    opacity: 0.34;
+  }
+
+  50% {
+    opacity: 0.62;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nous-workflow-node-active .nous-workflow-node-active-prism-border,
+  .nous-workflow-node-active .nous-workflow-node-active-prism-gradient,
+  .nous-workflow-node-active-prism-gradient,
+  .nous-workflow-connector-active::after,
+  .nous-workflow-connector-path-arrow-active,
+  .nous-workflow-connector-path-active {
+    animation: none;
+  }
+
+  .nous-workflow-connector-path-active {
+    stroke-dashoffset: 0;
+  }
+}
+
+.nous-home-chat-sidebar-unfocused {
+  -webkit-mask-image: var(--nous-home-chat-sidebar-unfocused-mask);
+  mask-image: var(--nous-home-chat-sidebar-unfocused-mask);
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.nous-home-chat-sidebar-outline-border {
+  padding: 1px;
+  background: radial-gradient(
+    ellipse 150% 150% at top right,
+    var(--nous-home-chat-sidebar-outline-color) 0%,
+    var(--nous-home-chat-sidebar-outline-color) 18%,
+    transparent 68%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.nous-home-chat-message-in {
+  animation: nous-home-chat-message-in 420ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.nous-home-chat-response-line-in {
+  animation: nous-home-chat-response-line-in 360ms cubic-bezier(0.22, 0.61, 0.36, 1)
+    both;
+}
+
+.nous-home-chat-final-answer-in {
+  animation: nous-home-chat-final-answer-in 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.nous-home-chat-typing-dot {
+  animation: nous-home-chat-typing-dot 1.05s ease-in-out infinite;
+}
+
+.nous-home-chat-caret {
+  animation: nous-home-chat-caret 1s steps(1, end) infinite;
+}
+
+.nous-home-chat-send-button-ready {
+  animation: nous-home-chat-send-ready 1.8s ease-in-out infinite;
+}
+
+.nous-tool-call-running-summary::after,
+.nous-home-chat-tool-call-running-summary::after {
+  animation: nous-home-chat-tool-call-wave 1.45s linear infinite;
+  border-radius: inherit;
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  transform: translateX(-120%);
+  z-index: 0;
+}
+
+.nous-tool-call-running-summary::after,
+.nous-home-chat-tool-call-running-summary::after {
+  background: var(--nous-tool-call-wave-bg);
+}
+
+.nous-running-workflow-summary {
+  animation: nous-running-workflow-text-wave 5.875s linear infinite;
+  background-image: var(--nous-running-workflow-wave-bg);
+  background-position: -180% 0;
+  background-size: 320% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.nous-running-workflow-icon-wave {
+  animation: nous-running-workflow-icon-wave 5.875s linear infinite;
+}
+
+@keyframes nous-home-chat-message-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes nous-home-chat-response-line-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes nous-home-chat-final-answer-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.995);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes nous-home-chat-typing-dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.28;
+    transform: translateY(0);
+  }
+
+  40% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes nous-home-chat-caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes nous-home-chat-send-ready {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes nous-home-chat-tool-call-wave {
+  from {
+    transform: translateX(-120%);
+  }
+
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes nous-running-workflow-text-wave {
+  from {
+    background-position: -180% 0;
+  }
+
+  to {
+    background-position: 180% 0;
+  }
+}
+
+@keyframes nous-running-workflow-icon-wave {
+  0%,
+  100% {
+    color: var(--nous-drawer-meta-fg);
+  }
+
+  50% {
+    color: color-mix(
+      in srgb,
+      var(--nous-drawer-meta-fg) 38%,
+      var(--nous-drawer-body-fg-strong)
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nous-home-chat-message-in,
+  .nous-home-chat-response-line-in,
+  .nous-home-chat-final-answer-in,
+  .nous-home-chat-typing-dot,
+  .nous-home-chat-caret,
+  .nous-home-chat-send-button-ready,
+  .nous-running-workflow-icon-wave,
+  .nous-running-workflow-summary,
+  .nous-tool-call-running-summary::after,
+  .nous-home-chat-tool-call-running-summary::after {
+    animation: none;
+  }
 }

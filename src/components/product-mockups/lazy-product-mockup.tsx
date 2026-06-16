@@ -1,0 +1,147 @@
+"use client";
+
+import dynamic from "next/dynamic";
+import { useEffect, useRef, useState } from "react";
+
+import type { CortexWorkflowCreationGraphNodeId, CortexWorkflowCreationMode } from "@/components/product-mockups/cortex-workflow-creation-script";
+import type { HomepageChatMockupMode } from "@/components/product-mockups/homepage-chat-section-mockup";
+import { productMockupLazyShellClassNameByMode } from "@/components/product-mockups/product-mockup-shell";
+import type { ProductMockupShellMode } from "@/components/product-mockups/product-mockup-shell";
+import type { SavedWorkflowGraphNodeId, SavedWorkflowStoryboardMode } from "@/components/product-mockups/saved-workflow-storyboard-script";
+import { cn } from "@/lib/cn";
+
+type HomepageChatMockupProps = {
+    isPlaybackActive?: boolean;
+    mode?: HomepageChatMockupMode;
+};
+
+type CortexWorkflowCreationMockupProps = {
+    isPlaybackActive?: boolean;
+    mode?: CortexWorkflowCreationMode;
+    previewActiveGraphNodeId?: CortexWorkflowCreationGraphNodeId;
+};
+
+type SavedWorkflowRunMockupProps = {
+    isPlaybackActive?: boolean;
+    mode?: SavedWorkflowStoryboardMode;
+    previewActiveGraphNodeId?: SavedWorkflowGraphNodeId;
+};
+
+const LazyHomepageChatSectionMockup = dynamic<HomepageChatMockupProps>(
+    () => import("@/components/product-mockups/homepage-chat-section-mockup").then((module) => module.HomepageChatSectionMockup),
+    { ssr: false }
+);
+
+const LazyCortexWorkflowCreationMockup = dynamic<CortexWorkflowCreationMockupProps>(
+    () => import("@/components/product-mockups/cortex-workflow-creation-mockup").then((module) => module.CortexWorkflowCreationMockup),
+    { ssr: false }
+);
+
+const LazySavedWorkflowRunWireframeMockup = dynamic<SavedWorkflowRunMockupProps>(
+    () => import("@/components/product-mockups/saved-workflow-run-wireframe-mockup").then((module) => module.SavedWorkflowRunWireframeMockup),
+    { ssr: false }
+);
+
+type LazyProductMockupProps =
+    | {
+        mode?: HomepageChatMockupMode;
+        rootMargin?: string;
+        variant: "homepage-chat";
+    }
+    | {
+        mode?: CortexWorkflowCreationMode;
+        previewActiveGraphNodeId?: CortexWorkflowCreationGraphNodeId;
+        rootMargin?: string;
+        variant: "cortex-workflow-creation";
+    }
+    | {
+        mode?: SavedWorkflowStoryboardMode;
+        previewActiveGraphNodeId?: SavedWorkflowGraphNodeId;
+        rootMargin?: string;
+        variant: "saved-workflow-run";
+    };
+
+const placeholderCopyByVariant = {
+    "cortex-workflow-creation": "Cortex workflow creation mockup loading when near viewport",
+    "homepage-chat": "Homepage chat visual mockup loading when near viewport",
+    "saved-workflow-run": "Saved workflow run wireframe mockup loading when near viewport"
+} as const;
+
+export function LazyProductMockup(props: LazyProductMockupProps) {
+    const { rootMargin = "900px 0px 900px", variant } = props;
+    const containerRef = useRef<HTMLDivElement | null>(null);
+    const [hasEnteredViewport, setHasEnteredViewport] = useState(false);
+    const [isPlaybackActive, setIsPlaybackActive] = useState(false);
+
+    useEffect(() => {
+        if (typeof window.IntersectionObserver !== "function") {
+            const timeout = window.setTimeout(() => {
+                setHasEnteredViewport(true);
+                setIsPlaybackActive(true);
+            }, 0);
+
+            return () => window.clearTimeout(timeout);
+        }
+
+        const containerElement = containerRef.current;
+
+        if (!containerElement) {
+            return undefined;
+        }
+
+        const observer = new window.IntersectionObserver(
+            ([entry]) => {
+                const isIntersecting = Boolean(entry?.isIntersecting);
+
+                setIsPlaybackActive(isIntersecting);
+
+                if (isIntersecting) {
+                    setHasEnteredViewport(true);
+                }
+            },
+            { rootMargin, threshold: 0.01 }
+        );
+
+        observer.observe(containerElement);
+
+        return () => observer.disconnect();
+    }, [rootMargin]);
+
+    return (
+        <div
+            className={cn("relative", getLazyProductMockupShellClassName(props))}
+            data-lazy-product-mockup={variant}
+            data-lazy-product-mockup-playback={isPlaybackActive ? "active" : "paused"}
+            ref={containerRef}
+        >
+            {hasEnteredViewport ? renderMockup(props, isPlaybackActive) : <LazyProductMockupPlaceholder variant={variant} />}
+        </div>
+    );
+}
+
+function getLazyProductMockupShellClassName(props: LazyProductMockupProps) {
+    const mode: ProductMockupShellMode = props.mode === "static" ? "static" : "storyboard";
+
+    return productMockupLazyShellClassNameByMode[mode];
+}
+
+function LazyProductMockupPlaceholder({ variant }: { variant: LazyProductMockupProps["variant"] }) {
+    return (
+        <div
+            aria-label={placeholderCopyByVariant[variant]}
+            className="absolute inset-0 rounded-[var(--nous-radius-xl)] border border-[color:var(--nous-stroke-soft)] bg-[var(--nous-page-card-bg)]"
+        />
+    );
+}
+
+function renderMockup(props: LazyProductMockupProps, isPlaybackActive: boolean) {
+    if (props.variant === "homepage-chat") {
+        return <LazyHomepageChatSectionMockup isPlaybackActive={isPlaybackActive} mode={props.mode} />;
+    }
+
+    if (props.variant === "cortex-workflow-creation") {
+        return <LazyCortexWorkflowCreationMockup isPlaybackActive={isPlaybackActive} mode={props.mode} previewActiveGraphNodeId={props.previewActiveGraphNodeId} />;
+    }
+
+    return <LazySavedWorkflowRunWireframeMockup isPlaybackActive={isPlaybackActive} mode={props.mode} previewActiveGraphNodeId={props.previewActiveGraphNodeId} />;
+}

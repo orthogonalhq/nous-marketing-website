@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { mockupCopy } from "@/content/mockup-copy";
 import { Glyph } from "./icons";
 import type { GlyphName } from "./icons";
 import { Button, Surface } from "./primitives";
@@ -24,7 +25,7 @@ export function WorkCard({ body, count, title }: { body: string; count: string; 
             </span>
             <h3 className="pr-[var(--nous-card-title-padding-right)] text-sm text-[var(--nous-card-title-fg)] font-semibold">{title}</h3>
             <p className="mt-[var(--nous-card-body-margin-top)] text-xs text-[var(--nous-card-body-fg)]">{body}</p>
-            <Button className="mt-[var(--nous-card-action-margin-top)] gap-[var(--nous-card-action-gap)] px-1 text-[length:var(--nous-type-micro-xs)] leading-none" icon="menu" variant="warning">Review</Button>
+            <Button className="mt-[var(--nous-card-action-margin-top)] gap-[var(--nous-card-action-gap)] px-1 text-[length:var(--nous-type-micro-xs)] leading-none" icon="menu" variant="warning">{mockupCopy.cards.reviewAction}</Button>
         </Surface >
     );
 }
@@ -35,7 +36,7 @@ export function InsightCard({ body, note, title }: { body: string; note: string;
             <h3 className="text-sm text-[var(--nous-card-title-fg)] font-semibold">{title}</h3>
             <p className="mt-[var(--nous-card-insight-body-margin-top)] text-xs text-[var(--nous-card-body-fg)]">{body}</p>
             <p className="mt-[var(--nous-card-insight-note-margin-top)] text-xs text-[var(--nous-card-body-fg)]">{note}</p>
-            <Button className="mt-[var(--nous-card-insight-action-margin-top)] gap-[var(--nous-card-action-gap)] px-2 text-[length:var(--nous-type-micro-xs)] leading-none" icon="edit" variant="primary">Review</Button>
+            <Button className="mt-[var(--nous-card-insight-action-margin-top)] gap-[var(--nous-card-action-gap)] px-2 text-[length:var(--nous-type-micro-xs)] leading-none" icon="edit" variant="primary">{mockupCopy.cards.reviewAction}</Button>
         </Surface>
     );
 }

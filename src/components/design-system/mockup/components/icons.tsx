@@ -38,6 +38,7 @@ import {
     SquarePen,
     SquarePlus,
     SquareSlash,
+    Terminal,
     Timeline,
     UserRound,
     UserRoundPen,
@@ -60,6 +61,7 @@ const glyphs = {
     assetChat: BotMessageSquare,
     chevronDown: ChevronDown,
     close: X,
+    cli: Terminal,
     database: Database,
     databaseZap: DatabaseZap,
     developer: SquareCode,
@@ -98,12 +100,14 @@ const glyphs = {
 
 export type GlyphName = keyof typeof glyphs;
 
-export function Glyph({ className, name, strokeWidth = 1.9 }: { className?: string; name: GlyphName; strokeWidth?: number }) {
+export function Glyph({ className, name, strokeWidth = 1.9 }: { className?: string; name: GlyphName; strokeWidth?: number | string }) {
     const Icon = glyphs[name];
+    const strokeStyle = typeof strokeWidth === "string" ? { strokeWidth } : undefined;
+    const strokeWidthAttribute = typeof strokeWidth === "number" ? strokeWidth : undefined;
 
     return (
         <span aria-hidden="true" className={cn("inline-flex size-4 items-center justify-center", className)}>
-            <Icon className="size-full" strokeWidth={strokeWidth} />
+            <Icon className="size-full" strokeWidth={strokeWidthAttribute} style={strokeStyle} />
         </span>
     );
 }
