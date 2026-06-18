@@ -1,6 +1,9 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import type { CSSProperties } from "react";
+import type { RefObject } from "react";
+import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 
 import type { CortexWorkflowCreationGraphNodeId, CortexWorkflowCreationMode } from "@/components/product-mockups/cortex-workflow-creation-script";
@@ -72,6 +75,7 @@ export function LazyProductMockup(props: LazyProductMockupProps) {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const [hasEnteredViewport, setHasEnteredViewport] = useState(false);
     const [isPlaybackActive, setIsPlaybackActive] = useState(false);
+    const mobileMetrics = useMobileProductMockupMetrics(containerRef, props.mode === "static" ? "static" : "storyboard");
 
     useEffect(() => {
         if (typeof window.IntersectionObserver !== "function") {
@@ -109,12 +113,37 @@ export function LazyProductMockup(props: LazyProductMockupProps) {
 
     return (
         <div
-            className={cn("relative", getLazyProductMockupShellClassName(props))}
+            className={cn(
+                "relative max-md:-left-2 max-md:w-[calc(100%+1rem)] max-md:overflow-hidden",
+                getLazyProductMockupShellClassName(props)
+            )}
             data-lazy-product-mockup={variant}
             data-lazy-product-mockup-playback={isPlaybackActive ? "active" : "paused"}
             ref={containerRef}
+            style={mobileMetrics.style}
         >
-            {hasEnteredViewport ? renderMockup(props, isPlaybackActive) : <LazyProductMockupPlaceholder variant={variant} />}
+            {hasEnteredViewport ? (
+                <MobileScaledProductMockupStage variant={variant}>
+                    {renderMockup(props, isPlaybackActive)}
+                </MobileScaledProductMockupStage>
+            ) : <LazyProductMockupPlaceholder variant={variant} />}
+        </div>
+    );
+}
+
+function MobileScaledProductMockupStage({ children, variant }: { children: ReactNode; variant: LazyProductMockupProps["variant"] }) {
+    return (
+        <div
+            className={cn(
+                "md:contents",
+                "max-md:absolute max-md:top-0 max-md:w-[var(--nous-home-chat-frame-width)] max-md:origin-top-left",
+                "max-md:left-1",
+                "max-md:scale-[var(--nous-product-mockup-mobile-scale,0.42)]"
+            )}
+            data-lazy-product-mockup-mobile-variant={variant}
+            data-lazy-product-mockup-mobile-scale="fit-width"
+        >
+            {children}
         </div>
     );
 }
@@ -123,6 +152,60 @@ function getLazyProductMockupShellClassName(props: LazyProductMockupProps) {
     const mode: ProductMockupShellMode = props.mode === "static" ? "static" : "storyboard";
 
     return productMockupLazyShellClassNameByMode[mode];
+}
+
+function useMobileProductMockupMetrics(containerRef: RefObject<HTMLDivElement | null>, mode: ProductMockupShellMode) {
+    const [metrics, setMetrics] = useState({
+        scale: 0.42,
+        shellHeight: mode === "static" ? 270 : 312
+    });
+
+    useEffect(() => {
+        const updateMetrics = () => {
+            const rootStyle = window.getComputedStyle(document.documentElement);
+            const desktopWidth = parseCssPixelValue(rootStyle.getPropertyValue("--nous-home-chat-frame-width"), 1120);
+            const frameHeight = parseCssPixelValue(rootStyle.getPropertyValue("--nous-home-chat-frame-height"), 486);
+            const rootFontSize = parseCssPixelValue(rootStyle.fontSize, 16);
+            const storyboardControlHeight = mode === "storyboard" ? rootFontSize * 2.5 : 0;
+            const containerWidth = containerRef.current?.getBoundingClientRect().width ?? window.innerWidth;
+            const mobileGutter = 4;
+            const availableWidth = Math.max(0, containerWidth - mobileGutter * 2);
+            const nextScale = Math.min(1, availableWidth / desktopWidth);
+            const nextShellHeight = Math.ceil((frameHeight + storyboardControlHeight) * nextScale);
+
+            setMetrics({
+                scale: nextScale,
+                shellHeight: nextShellHeight
+            });
+        };
+
+        updateMetrics();
+        window.addEventListener("resize", updateMetrics);
+
+        const resizeObserver = typeof window.ResizeObserver === "function" && containerRef.current
+            ? new window.ResizeObserver(updateMetrics)
+            : null;
+
+        resizeObserver?.observe(containerRef.current as HTMLDivElement);
+
+        return () => {
+            window.removeEventListener("resize", updateMetrics);
+            resizeObserver?.disconnect();
+        };
+    }, [containerRef, mode]);
+
+    return {
+        style: {
+            "--nous-product-mockup-mobile-scale": metrics.scale.toString(),
+            "--nous-product-mockup-mobile-shell-height": `${metrics.shellHeight}px`
+        } as CSSProperties
+    };
+}
+
+function parseCssPixelValue(value: string, fallback: number) {
+    const parsedValue = Number.parseFloat(value);
+
+    return Number.isFinite(parsedValue) ? parsedValue : fallback;
 }
 
 function LazyProductMockupPlaceholder({ variant }: { variant: LazyProductMockupProps["variant"] }) {

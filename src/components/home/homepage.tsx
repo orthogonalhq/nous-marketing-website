@@ -2,8 +2,7 @@ import { HeroModeTabs } from "@/components/home/hero-mode-tabs";
 import { HeroSubHeaderCards } from "@/components/home/hero-sub-header-cards";
 import { HomeThemeShell } from "@/components/home/home-theme-shell";
 import { ProductGradientSection } from "@/components/home/product-gradient-section";
-import { PrincipleCardIllustration } from "@/components/home/principle-card-illustration";
-import { PrimaryCtaLink } from "@/components/marketing/primary-cta-link";
+import { DownloadCtaLink } from "@/components/marketing/download-cta-link";
 import { homeCopy } from "@/content/home-copy";
 import type { HomeCopy } from "@/content/home-copy";
 import { cn } from "@/lib/cn";
@@ -12,7 +11,6 @@ import type { LucideIcon } from "lucide-react";
 import heroCardStyles from "./hero-sub-header-cards.module.css";
 import thesisStyles from "./hero-thesis-prism.module.css";
 
-type PrincipleCard = HomeCopy["principles"]["cards"][number];
 type TrustPrinciple = HomeCopy["trust"]["principles"][number]["principle"];
 
 const trustPrincipleIcons = {
@@ -103,16 +101,6 @@ function PrinciplesSection() {
                 ))}
             </div> */}
         </section>
-    );
-}
-
-function PrincipleCardView({ card }: { card: PrincipleCard }) {
-    return (
-        <article className="rounded-[var(--nous-radius-lg)] border border-[color:var(--nous-stroke-soft)] bg-[var(--nous-page-card-bg)] p-5 shadow-[var(--nous-shadow-card)]">
-            <PrincipleCardIllustration type={card.type} />
-            <h3 className="text-base font-medium tracking-[-0.018em] text-[var(--nous-page-title-fg)]">{card.title}</h3>
-            <p className="mt-3 text-sm leading-6 text-[var(--nous-page-body-fg)]">{card.body}</p>
-        </article>
     );
 }
 
@@ -222,9 +210,7 @@ function DownloadSection() {
                 <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[var(--nous-page-body-fg)]">
                     {homeCopy.download.body}
                 </p>
-                <PrimaryCtaLink className="mt-8" href={homeCopy.download.href}>
-                    {homeCopy.download.cta}
-                </PrimaryCtaLink>
+                <DownloadCtaLink className="mt-8" />
             </div>
         </section>
     );

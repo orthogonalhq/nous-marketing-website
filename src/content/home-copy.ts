@@ -15,24 +15,24 @@ export const homeCopy = {
         githubHref: "https://github.com/orthogonalhq/nous-core",
         homeAriaLabel: "Nue home",
         links: {
-            getStarted: "Get started",
+            download: "Download",
             login: "Log in",
             pricing: "Pricing"
         },
         productFooter: {
             cta: "Explore product",
-            href: "#product",
+            href: "/product",
             label: "How Nue works"
         },
         primaryAriaLabel: "Primary navigation",
         productLabel: "Product",
         productPrimaryLinks: [
-            { description: "Start with natural requests and inspectable follow-through.", href: "#conversation", label: "Conversation" },
-            { description: "Turn repeated intent into reusable routines with permission.", href: "#delegation", label: "Delegation" },
-            { description: "Run scheduled agent work with memory, tools, approvals, and history.", href: "#agent-os", label: "Agent OS" },
-            { description: "Bring your own keys, keep memory local, and stay portable.", href: "#ownership", label: "Ownership" },
-            { description: "Connect services while stopping before sensitive actions.", href: "#agent-os", label: "Tools & approvals" },
-            { description: "See the privacy-first principles behind personal agents.", href: "#trust", label: "Trust principles" }
+            { description: "The umbrella view of Nue, from chat to agent OS.", href: "/product", label: "Product overview" },
+            { description: "Start with natural requests and inspectable follow-through.", href: "/product#conversation", label: "Conversation" },
+            { description: "Turn repeated intent into reusable routines with permission.", href: "/product#delegation", label: "Delegation" },
+            { description: "Run scheduled agent work with memory, tools, approvals, and history.", href: "/product#agent-os", label: "Agent OS" },
+            { description: "Bring your own keys, keep memory local, and stay portable.", href: "/product#ownership", label: "Ownership" },
+            { description: "Connect services while stopping before sensitive actions.", href: "/product#tools", label: "Tools & approvals" }
         ],
         resourceSections: [
             {
@@ -47,16 +47,16 @@ export const homeCopy = {
             {
                 label: "Learn",
                 links: [
-                    { description: "Real examples of chat becoming reusable routines.", href: "/examples", label: "Examples" },
-                    { description: "Browse repeatable workflows for life and work.", href: "/workflows", label: "Workflow library" },
-                    { description: "Product notes, essays, and launch updates.", href: "/blog", label: "Blog" }
+                    { description: "A central place for docs, guides, examples, and updates.", href: "/resources", label: "Resources overview" },
+                    { description: "Real examples of chat becoming reusable routines.", href: "/resources#examples", label: "Examples" },
+                    { description: "Browse repeatable workflows for life and work.", href: "/resources#guides", label: "Guides" }
                 ],
                 variant: "default"
             },
             {
                 label: "Trust & technical",
                 links: [
-                    { description: "Set up Nue and connect your tools.", href: "/docs", label: "Docs" },
+                    { description: "Set up Nue and connect your tools.", external: true, href: "https://docs.nue.orthg.nl", label: "Docs" },
                     { description: "Privacy, security, and permission boundaries.", href: "/security", label: "Security" },
                     { description: "Build with Nue and inspect the source.", href: "/developers", label: "Developers" }
                 ],
@@ -76,11 +76,11 @@ export const homeCopy = {
             {
                 label: "Product",
                 links: [
-                    { href: "#conversation", label: "Conversation" },
-                    { href: "#delegation", label: "Delegation" },
-                    { href: "#agent-os", label: "Agent OS" },
-                    { href: "#ownership", label: "Ownership" },
-                    { href: "#trust", label: "Trust principles" }
+                    { href: "/product", label: "Product overview" },
+                    { href: "/product#conversation", label: "Conversation" },
+                    { href: "/product#delegation", label: "Delegation" },
+                    { href: "/product#agent-os", label: "Agent OS" },
+                    { href: "/download", label: "Download" }
                 ]
             },
             {
@@ -94,25 +94,25 @@ export const homeCopy = {
             {
                 label: "Resources",
                 links: [
-                    { href: "/examples", label: "Examples" },
-                    { href: "/workflows", label: "Workflow library" },
-                    { href: "/docs", label: "Docs" },
-                    { href: "/developers", label: "Developers" }
+                    { href: "/resources", label: "Resources overview" },
+                    { external: true, href: "https://docs.nue.orthg.nl", label: "Docs" },
+                    { href: "/resources#guides", label: "Guides" },
+                    { href: "/resources#community", label: "Community" }
                 ]
             },
             {
                 label: "Company",
                 links: [
                     { href: "/pricing", label: "Pricing" },
-                    { href: "/blog", label: "Blog" },
-                    { href: "/about", label: "About" },
+                    { href: "/careers", label: "Careers" },
+                    { href: "/resources#blog", label: "Blog" },
                     { external: true, href: "https://github.com/orthogonalhq/nous-core", label: "GitHub" }
                 ]
             }
         ],
         copyright: "© 2026 Nue",
         ctas: [
-            { href: "/signup", label: "Get started", variant: "primary" },
+            { href: "/download", label: "Download Nue", variant: "primary" },
             { external: true, href: "https://github.com/orthogonalhq/nous-core", label: "View GitHub", variant: "secondary" }
         ],
         taglineBody: "Nue turns everyday requests into private routines that remember the details, handle the steps, and ask before anything important happens.",
