@@ -11,21 +11,21 @@ const plans = [
   },
   {
     badge: "For everyday use",
-    cta: { href: "mailto:hello@nue.ai?subject=Nue%20Pro%20waitlist", label: "Join waitlist" },
+    cta: { href: "/download#waitlist", label: "Join waitlist" },
     description: "For people who want Nue to handle cloud execution and managed model access.",
     features: ["Managed cloud compute", "Managed model access", "Background agent runs", "Usage controls"],
     name: "Pro",
     price: "$20/mo"
   },
   {
-    cta: { href: "mailto:hello@nue.ai?subject=Nue%20Max%20waitlist", label: "Join waitlist" },
+    cta: { href: "/download#waitlist", label: "Join waitlist" },
     description: "For heavier workflows, more background runs, and higher managed usage.",
     features: ["More cloud compute", "Higher model usage limits", "Priority routing", "Advanced workflow history"],
     name: "Max",
     price: "$100/mo"
   },
   {
-    cta: { href: "mailto:hello@nue.ai?subject=Nue%20team%20pricing", label: "Contact us" },
+    cta: { href: "mailto:hello@nue.orthg.nl?subject=Nue%20team%20pricing", label: "Contact us" },
     description: "For teams that need shared agents, support, governance, or custom deployment paths.",
     features: ["Shared workspaces", "Admin and support", "Security review", "Custom deployment options"],
     name: "Team / Enterprise",
@@ -52,6 +52,7 @@ export function PricingPage() {
       <PlanTiers />
       <CloudExplainer />
       <Faq />
+      <PricingCta />
     </>
   );
 }
@@ -61,20 +62,13 @@ function Hero() {
     <section className="relative overflow-hidden pb-16 pt-14 sm:pb-20 sm:pt-20">
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-[70%] bg-[image:var(--nous-page-hero-bottom-light-bg)]" />
       <div className="reading-container relative z-10 [--reading-container-max:1180px]">
-        <p className={eyebrowClass}>PRICING</p>
+        <p className={eyebrowClass}>PLANS</p>
         <h1 className="mt-4 max-w-5xl text-balance text-[2.7rem] font-normal leading-[0.98] tracking-[-0.055em] text-[var(--nous-page-hero-title-fg)] sm:text-[3.6rem] lg:text-[4.6rem]">
-          Start free. Upgrade when you want Nue to run more for you.
+          Pricing
         </h1>
         <p className="mt-6 max-w-3xl text-balance text-[1.0625rem] leading-7 text-[var(--nous-page-body-fg)] sm:text-lg sm:leading-8">
-          Download Nue for local control. Upgrade to a cloud tier when you want managed compute, background agents, and model access without operating the infrastructure yourself.
+          Free to run locally. Affordable cloud packages for more complex usage.
         </p>
-        <div className="mt-8 flex flex-wrap items-center gap-3">
-          <DownloadCtaLink />
-          <a className="inline-flex h-10 items-center rounded-full px-4 text-sm font-medium text-[var(--nous-fg-muted)] transition hover:bg-white/[0.04] hover:text-[var(--nous-fg-title)]" href="#plans">
-            Compare plans
-          </a>
-        </div>
-        <p className="mt-6 text-sm text-[var(--nous-fg-muted)]">Open source. Local-first. Cloud tiers when you want managed convenience.</p>
       </div>
     </section>
   );
@@ -84,18 +78,35 @@ function PlanTiers() {
   return (
     <section className="border-t border-[color:var(--nous-stroke-subtle)] py-20 sm:py-24" id="plans">
       <div className="reading-container [--reading-container-max:1180px]">
-        <p className={eyebrowClass}>PLANS</p>
-        <h2 className={cn(sectionTitleClass, "mt-3 max-w-3xl")}>Simple tiers for local control or managed cloud execution.</h2>
-        <p className="mt-5 max-w-2xl text-base leading-7 text-[var(--nous-page-body-fg)]">
-          No VPS sizing, no infrastructure matrix. Start locally, then choose a cloud tier when you want Nue to run agents for you.
-        </p>
-        <div className="mt-10 grid gap-4 lg:grid-cols-3">
+        <div className="grid gap-4 lg:grid-cols-3">
           {plans.slice(0, 3).map((plan) => (
             <PlanCard key={plan.name} plan={plan} />
           ))}
         </div>
         <div className="mt-4">
           <EnterprisePlanCard plan={plans[3]} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PricingCta() {
+  return (
+    <section className="border-t border-[color:var(--nous-stroke-subtle)] py-20 sm:py-24">
+      <div className="reading-container reading-container-narrow rounded-[calc(var(--nous-radius-xl)+8px)] border border-[color:var(--nous-stroke-default)] [background:var(--nous-page-cta-panel-bg)] p-8 text-center shadow-[var(--nous-shadow-drawer)] sm:p-12">
+        <p className={eyebrowClass}>START LOCAL</p>
+        <h2 className="mx-auto mt-4 max-w-3xl text-balance text-[2.2rem] font-normal leading-[1] tracking-[-0.055em] text-[var(--nous-page-title-fg)] sm:text-[3rem]">
+          Download Nue now. Join cloud when you want managed runs.
+        </h2>
+        <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[var(--nous-page-body-fg)] sm:text-lg sm:leading-8">
+          Nue starts open-source and local-first. Cloud tiers add managed compute, model access, and background execution when you are ready.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <DownloadCtaLink />
+          <a className="inline-flex h-10 items-center rounded-full border border-[color:var(--nous-stroke-soft)] bg-[var(--nous-page-soft-control-bg)] px-4 text-sm font-medium text-[var(--nous-fg-title)] transition hover:border-white/[0.08] hover:bg-white/[0.06]" href="/download#waitlist">
+            Join cloud waitlist
+          </a>
         </div>
       </div>
     </section>

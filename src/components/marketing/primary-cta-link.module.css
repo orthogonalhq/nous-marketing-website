@@ -107,6 +107,11 @@
   box-shadow: var(--nous-primary-cta-shadow-hover);
 }
 
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
 .button:hover::before {
   content: none;
 }

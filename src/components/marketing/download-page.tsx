@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 
-import { DownloadCtaLink } from "@/components/marketing/download-cta-link";
+import { WaitlistForm } from "@/components/marketing/waitlist-form";
 import { cn } from "@/lib/cn";
 
 type DownloadOs = "linux" | "macos" | "windows";
@@ -12,29 +12,26 @@ const platforms = {
   macos: {
     icon: AppleIcon,
     label: "macOS",
-    primary: "Download for Apple Silicon",
-    primaryHref: "/download?os=macos&arch=apple-silicon",
-    requirements: "macOS 13 or later. Apple Silicon recommended. Intel builds are available for older supported Macs.",
-    secondary: "Download for Intel",
-    secondaryHref: "/download?os=macos&arch=intel"
+    primary: "Join macOS waitlist",
+    requirements: "Signed macOS installers are planned for Apple Silicon and Intel Macs once binary releases open.",
+    secondary: "Inspect source",
+    secondaryHref: "https://github.com/orthogonalhq/nous-core"
   },
   windows: {
     icon: WindowsIcon,
     label: "Windows",
-    primary: "Download for x64",
-    primaryHref: "/download?os=windows&arch=x64",
-    requirements: "Windows 10 or later, 64-bit. ARM64 builds are available for supported Windows on Arm devices.",
-    secondary: "Download for ARM64",
-    secondaryHref: "/download?os=windows&arch=arm64"
+    primary: "Join Windows waitlist",
+    requirements: "Windows installers are planned for x64 and ARM64 targets once binary releases open.",
+    secondary: "Inspect source",
+    secondaryHref: "https://github.com/orthogonalhq/nous-core"
   },
   linux: {
     icon: LinuxIcon,
     label: "Linux",
-    primary: "Download for x64",
-    primaryHref: "/download?os=linux&arch=x64",
-    requirements: "glibc 2.28 or later. Tested targets include Ubuntu 20.04+, Debian 10+, Fedora 36+, and RHEL 8+.",
-    secondary: "Download for ARM64",
-    secondaryHref: "/download?os=linux&arch=arm64"
+    primary: "Join Linux waitlist",
+    requirements: "Linux packages are planned for x64 and ARM64 targets once binary releases open.",
+    secondary: "Inspect source",
+    secondaryHref: "https://github.com/orthogonalhq/nous-core"
   }
 } satisfies Record<DownloadOs, Platform>;
 
@@ -42,7 +39,6 @@ type Platform = {
   icon: (props: { className?: string }) => ReactNode;
   label: string;
   primary: string;
-  primaryHref: string;
   requirements: string;
   secondary: string;
   secondaryHref: string;
@@ -54,12 +50,33 @@ const sectionTitleClass = "text-balance text-[1.85rem] font-normal leading-[1.05
 
 export function DownloadPage() {
   const [detectedOs, setDetectedOs] = useState<DownloadOs | null>(null);
+  const [waitlistPlatform, setWaitlistPlatform] = useState<DownloadOs | "unknown" | null>(null);
 
   useEffect(() => {
-    const raf = window.requestAnimationFrame(() => setDetectedOs(getInitialOs()));
+    const raf = window.requestAnimationFrame(() => {
+      const initialOs = getInitialOs();
+      setDetectedOs(initialOs);
+
+      if (window.location.hash === "#waitlist") {
+        setWaitlistPlatform(initialOs ?? "unknown");
+      }
+    });
 
     return () => window.cancelAnimationFrame(raf);
   }, []);
+
+  useEffect(() => {
+    if (waitlistPlatform === null) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [waitlistPlatform]);
 
   return (
     <>
@@ -73,19 +90,21 @@ export function DownloadPage() {
                 Download Nue.
               </h1>
               <p className="mt-6 max-w-2xl text-balance text-[1.0625rem] leading-7 text-[var(--nous-page-body-fg)] sm:text-lg sm:leading-8">
-                Get the early access desktop app for your operating system. Choose your platform and architecture below.
+                The Nue Personal Agent OS app is available for macOS, Windows, and Linux. Choose your platform to get the right early access path.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
-                <DownloadCtaLink />
+                <button className="inline-flex h-10 items-center rounded-full border border-[color:var(--nous-stroke-soft)] bg-[var(--nous-page-soft-control-bg)] px-4 text-sm font-medium text-[var(--nous-fg-title)] transition hover:border-white/[0.08] hover:bg-white/[0.06]" onClick={() => setWaitlistPlatform(detectedOs ?? "unknown")} type="button">
+                  Join early access
+                </button>
                 <a className="inline-flex h-10 items-center rounded-full px-4 text-sm font-medium text-[var(--nous-fg-muted)] transition hover:bg-white/[0.04] hover:text-[var(--nous-fg-title)]" href="#platform-downloads">
-                  Choose another build
+                  Choose a platform
                 </a>
               </div>
             </div>
             <div className="rounded-[var(--nous-radius-xl)] border border-[color:var(--nous-stroke-soft)] bg-[var(--nous-page-card-bg)] p-5 shadow-[var(--nous-shadow-card)]">
               <p className={eyebrowClass}>EARLY ACCESS</p>
               <p className="mt-3 text-sm leading-6 text-[var(--nous-page-body-fg)]">
-                Nue is open source and local-first. If you want source, docs, or release notes instead of an installer, use the links below.
+                Nue is open source and local-first, with platform-specific early access for desktop setup, source inspection, docs, and release tracking.
               </p>
             </div>
           </div>
@@ -94,10 +113,10 @@ export function DownloadPage() {
 
       <section className="border-y border-[color:var(--nous-stroke-subtle)] bg-[var(--nous-page-section-band-bg)] py-14 sm:py-16" id="platform-downloads">
         <div className="reading-container [--reading-container-max:1180px]">
-          <h2 className={sectionTitleClass}>Nue early access</h2>
+          <h2 className={sectionTitleClass}>Available for macOS, Windows, and Linux.</h2>
           <div className="mt-8 grid gap-0 overflow-hidden rounded-[var(--nous-radius-xl)] border border-[color:var(--nous-stroke-subtle)] bg-[var(--nous-page-card-bg)] shadow-[var(--nous-shadow-card)] lg:grid-cols-3">
             {platformOrder.map((os, index) => (
-              <PlatformDownloadColumn detected={detectedOs === os} isLast={index === platformOrder.length - 1} key={os} platform={platforms[os]} />
+              <PlatformDownloadColumn detected={detectedOs === os} isLast={index === platformOrder.length - 1} key={os} onJoinWaitlist={() => setWaitlistPlatform(os)} platform={platforms[os]} />
             ))}
           </div>
         </div>
@@ -109,7 +128,7 @@ export function DownloadPage() {
             <p className={eyebrowClass}>INSTALL ANOTHER WAY</p>
             <h2 className={cn(sectionTitleClass, "mt-3")}>Source, docs, and release details.</h2>
             <p className="mt-5 text-base leading-7 text-[var(--nous-page-body-fg)]">
-              Desktop is the fastest path for everyday use. Developers and maintainers can inspect the source, follow setup docs, and track releases from GitHub.
+              Desktop will be the fastest path for everyday use once signed builds are available. Developers and maintainers can inspect the source, follow setup docs, and track releases from GitHub today.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-3">
@@ -119,11 +138,13 @@ export function DownloadPage() {
           </div>
         </div>
       </section>
+
+      {waitlistPlatform ? <WaitlistLightbox onClose={() => setWaitlistPlatform(null)} platform={waitlistPlatform} /> : null}
     </>
   );
 }
 
-function PlatformDownloadColumn({ detected, isLast, platform }: { detected: boolean; isLast: boolean; platform: Platform }) {
+function PlatformDownloadColumn({ detected, isLast, onJoinWaitlist, platform }: { detected: boolean; isLast: boolean; onJoinWaitlist: () => void; platform: Platform }) {
   const Icon = platform.icon;
 
   return (
@@ -137,9 +158,9 @@ function PlatformDownloadColumn({ detected, isLast, platform }: { detected: bool
       </div>
 
       <div className="mt-5 grid gap-3">
-        <a className="inline-flex h-12 items-center justify-center rounded-full bg-[var(--nous-page-title-fg)] px-4 text-sm font-medium text-[var(--nous-page-bg)] transition hover:opacity-90" href={platform.primaryHref}>
+        <button className="inline-flex h-12 items-center justify-center rounded-full bg-[var(--nous-page-title-fg)] px-4 text-sm font-medium text-[var(--nous-page-bg)] transition hover:opacity-90" onClick={onJoinWaitlist} type="button">
           {platform.primary}
-        </a>
+        </button>
         <a className="inline-flex h-12 items-center justify-center rounded-full border border-[color:var(--nous-stroke-soft)] bg-[var(--nous-page-soft-control-bg)] px-4 text-sm font-medium text-[var(--nous-fg-title)] transition hover:border-[color:var(--nous-stroke-default)] hover:bg-[var(--nous-bg-control)]" href={platform.secondaryHref}>
           {platform.secondary}
         </a>
@@ -150,6 +171,53 @@ function PlatformDownloadColumn({ detected, isLast, platform }: { detected: bool
         <p className="mt-2 text-sm leading-6 text-[var(--nous-page-body-fg)]">{platform.requirements}</p>
       </div>
     </article>
+  );
+}
+
+function WaitlistLightbox({ onClose, platform }: { onClose: () => void; platform: DownloadOs | "unknown" }) {
+  const [selectedPlatform, setSelectedPlatform] = useState<DownloadOs | "unknown">(platform);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
+  const platformLabel = selectedPlatform === "unknown" ? "your platform" : platforms[selectedPlatform].label;
+  const PlatformIcon = selectedPlatform === "unknown" ? SparkIcon : platforms[selectedPlatform].icon;
+
+  return (
+    <div aria-labelledby="waitlist-dialog-title" aria-modal="true" className="fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-black/65 px-4 py-6 backdrop-blur-md sm:py-10" role="dialog">
+      <button aria-label="Close waitlist backdrop" className="absolute inset-0 cursor-default" onClick={onClose} tabIndex={-1} type="button" />
+      <div className="relative w-full max-w-xl rounded-[24px] border border-[color:var(--nous-stroke-default)] bg-[var(--nous-page-bg)] p-5 shadow-[0_24px_90px_rgba(0,0,0,0.58)] sm:p-7">
+          <div className="flex items-start justify-between gap-5">
+            <div className="min-w-0 max-w-md">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--nous-stroke-soft)] bg-[var(--nous-page-soft-control-bg)] px-3 py-1.5 text-xs font-medium text-[var(--nous-fg-muted)]">
+                <PlatformIcon className="size-3.5 text-[var(--nous-page-title-fg)]" />
+                {platformLabel === "your platform" ? "Early access" : `${platformLabel} early access`}
+              </div>
+              <h2 className="mt-5 text-balance text-[2rem] font-normal leading-[1.02] tracking-[-0.05em] text-[var(--nous-page-hero-title-fg)] sm:text-[2.55rem]" id="waitlist-dialog-title">
+                Get notified for {platformLabel}.
+              </h2>
+              <p className="mt-4 text-sm leading-6 text-[var(--nous-page-body-fg)]">
+                Pick a platform and leave your email. We’ll send one note when the right installer or setup path is available.
+              </p>
+            </div>
+            <button className="inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-[color:var(--nous-stroke-soft)] bg-[var(--nous-page-soft-control-bg)] text-[var(--nous-fg-muted)] transition hover:border-[color:var(--nous-stroke-default)] hover:bg-white/[0.06] hover:text-[var(--nous-fg-title)]" onClick={onClose} type="button">
+              <span className="sr-only">Close waitlist form</span>
+              <svg aria-hidden="true" className="size-4" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" viewBox="0 0 24 24">
+                <path d="m6 6 12 12M18 6 6 18" />
+              </svg>
+            </button>
+          </div>
+          <WaitlistForm className="mt-6" defaultPlatform={platform} onPlatformChange={setSelectedPlatform} platform={selectedPlatform} source="download-page" variant="modal" />
+      </div>
+    </div>
   );
 }
 
@@ -213,6 +281,15 @@ function LinuxIcon({ className }: { className?: string }) {
     <svg aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" viewBox="0 0 24 24">
       <path d="M12 3.2c-2 0-3.25 1.7-3.25 4.25 0 1.5-.5 2.7-1.25 3.95-.75 1.25-1.4 2.58-1.4 4.55 0 3.05 2.35 4.85 5.9 4.85s5.9-1.8 5.9-4.85c0-1.97-.65-3.3-1.4-4.55-.75-1.25-1.25-2.45-1.25-3.95 0-2.55-1.25-4.25-3.25-4.25Z" />
       <path d="M10.2 8.1h.01M13.8 8.1h.01M9.2 16.6c.85.55 1.75.8 2.8.8s1.95-.25 2.8-.8" />
+    </svg>
+  );
+}
+
+function SparkIcon({ className }: { className?: string }) {
+  return (
+    <svg aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" viewBox="0 0 24 24">
+      <path d="M12 3.5 13.8 9l5.7 1.7-5.7 1.8L12 18l-1.8-5.5-5.7-1.8L10.2 9 12 3.5Z" />
+      <path d="m18.5 16 .7 2.2 2.3.8-2.3.7-.7 2.3-.8-2.3-2.2-.7 2.2-.8.8-2.2Z" />
     </svg>
   );
 }

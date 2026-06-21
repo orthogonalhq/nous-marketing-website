@@ -118,6 +118,7 @@
     var(--nous-page-bg) 68%
   );
   --nous-page-hero-bottom-light-bg: radial-gradient(ellipse at bottom center, #f4f8ff0d 0%, #7d87af08 34%, #0000 72%);
+  --nous-page-login-radial-bg: radial-gradient(ellipse 105vh 130vh at bottom center, #f4f8ff0d 0%, #7d87af08 34%, #0000 72%);
   --nous-page-product-top-radial-bg: radial-gradient(ellipse 50% 50% at top center, #f4f8ff0d 0%, #7d87af08 34%, #0000 72%);
   --nous-page-product-bottom-radial-bg: radial-gradient(ellipse 50% 50% at bottom center, rgba(0, 0, 0, 0.52) 0%, rgba(0, 0, 0, 0.26) 34%, transparent 72%);
   --nous-page-section-band-bg: rgba(0, 0, 0, 0.2);
@@ -333,6 +334,12 @@
     rgba(50, 121, 249, 0.055) 34%,
     transparent 72%
   );
+  --nous-page-login-radial-bg: radial-gradient(
+    ellipse 105vh 130vh at bottom center,
+    rgba(50, 121, 249, 0.1) 0%,
+    rgba(50, 121, 249, 0.055) 34%,
+    transparent 72%
+  );
   --nous-page-product-top-radial-bg: radial-gradient(
     ellipse 50% 50% at top center,
     rgba(50, 121, 249, 0.1) 0%,
@@ -544,6 +551,12 @@
   );
   --nous-page-hero-bottom-light-bg: radial-gradient(
     ellipse at bottom center,
+    rgba(239, 192, 144, 0.18) 0%,
+    rgba(184, 123, 69, 0.1) 34%,
+    transparent 72%
+  );
+  --nous-page-login-radial-bg: radial-gradient(
+    ellipse 105vh 130vh at bottom center,
     rgba(239, 192, 144, 0.18) 0%,
     rgba(184, 123, 69, 0.1) 34%,
     transparent 72%

@@ -32,24 +32,24 @@ export const subpageCopy = {
     badge: "EARLY ACCESS",
     title: "Download Nue and start building your personal agent OS.",
     description:
-      "Install the early access release, connect your local workspace, and begin turning repeated requests into private routines with approvals built in.",
+      "Nue desktop installers are not published yet. Join early access, inspect the source, or follow the setup docs while signed builds are prepared.",
     primaryCta: { href: "#platforms", label: "Choose your platform" },
     secondaryCta: { href: "https://github.com/orthogonalhq/nous-core", label: "View source" },
     heroStats: [
       { label: "License", value: "Open source" },
-      { label: "Release", value: "Early access" },
+      { label: "Installers", value: "Coming soon" },
       { label: "Principle", value: "Privacy first" }
     ],
     sections: [
       {
         id: "platforms",
         eyebrow: "DOWNLOADS",
-        title: "Pick the build for your machine.",
-        body: "Desktop installers are the primary path. CLI and source builds give maintainers and early adopters a direct route into the project.",
+        title: "Installers are coming soon.",
+        body: "We will publish signed macOS, Windows, and Linux builds with release notes and checksums. Until then, use the waitlist, source, and docs paths below.",
         cards: [
-          { eyebrow: "macOS", title: "Apple Silicon and Intel", body: "Download the signed macOS build when the early access channel opens.", items: ["Native desktop shell", "Local memory directory", "Update channel ready"] },
-          { eyebrow: "Windows", title: "Windows desktop", body: "Install Nue on Windows for local-first agent workflows and app-connected routines.", items: ["Installer package", "Approval-first actions", "Workspace integrations"] },
-          { eyebrow: "Linux", title: "Linux packages", body: "Use Nue on developer workstations and self-managed environments.", items: ["AppImage target", "CLI-friendly setup", "Source build path"] }
+          { eyebrow: "macOS", title: "Apple Silicon and Intel", body: "Signed macOS builds are planned for the early access channel.", items: ["Native desktop shell", "Local memory directory", "Release checksums"] },
+          { eyebrow: "Windows", title: "Windows desktop", body: "Windows packages will be published once binary releases are ready.", items: ["Installer target", "Approval-first actions", "Workspace integrations"] },
+          { eyebrow: "Linux", title: "Linux packages", body: "Linux packages remain a planned path for developer workstations and self-managed environments.", items: ["AppImage target", "CLI-friendly setup", "Source build path"] }
         ]
       },
       {
@@ -74,8 +74,8 @@ export const subpageCopy = {
     title: "Simple pricing for a product that should stay useful, portable, and yours.",
     description:
       "Nue is early. The pricing model is designed to keep the core product accessible while funding the maintenance, security, and polish that a personal agent OS deserves.",
-    primaryCta: { href: "/download", label: "Download early access" },
-    secondaryCta: { href: "mailto:hello@nue.ai", label: "Talk to us" },
+    primaryCta: { href: "/download#waitlist", label: "Join early access" },
+    secondaryCta: { href: "mailto:hello@nue.orthg.nl", label: "Talk to us" },
     sections: [
       {
         eyebrow: "PLANS",
@@ -104,7 +104,7 @@ export const subpageCopy = {
     title: "Help build the future of personal agents.",
     description:
       "Nue needs high-taste maintainers who care about craft, privacy, performance, and tools that give people time back instead of taking more attention.",
-    primaryCta: { href: "mailto:careers@nue.ai", label: "Introduce yourself" },
+    primaryCta: { href: "mailto:careers@nue.orthg.nl", label: "Introduce yourself" },
     secondaryCta: { href: "https://github.com/orthogonalhq/nous-core", label: "Contribute on GitHub" },
     sections: [
       {
@@ -131,7 +131,7 @@ export const subpageCopy = {
       eyebrow: "OPEN ROLES",
       title: "We are starting with exceptional contributors.",
       body: "Formal roles will follow the work. If you can help shape Nue with unusual care, send context, links, and the kind of problems you want to own.",
-      cta: { href: "mailto:careers@nue.ai", label: "Start the conversation" }
+      cta: { href: "mailto:careers@nue.orthg.nl", label: "Start the conversation" }
     }
   },
   resources: {
@@ -164,12 +164,97 @@ export const subpageCopy = {
       }
     ]
   },
+  security: {
+    badge: "TRUST & SECURITY",
+    title: "Privacy-first agents need clear boundaries.",
+    description: "Nue is designed around local-first control, inspectable routines, scoped tool access, and explicit approval before important actions.",
+    primaryCta: { href: "/product#ownership", label: "See ownership model" },
+    secondaryCta: { href: "/privacy", label: "Read privacy" },
+    heroStats: [
+      { label: "Principle", value: "Privacy first" },
+      { label: "Actions", value: "Approval gated" },
+      { label: "Project", value: "Open source" }
+    ],
+    sections: [
+      {
+        eyebrow: "SECURITY MODEL",
+        title: "The agent that knows you should be constrained by you.",
+        body: "Nue treats memory, tools, keys, workflows, and external actions as sensitive surfaces that deserve visible control.",
+        cards: [
+          { title: "Local-first direction", body: "Nue prioritizes keeping personal context and workflow state close to the user-controlled environment where possible." },
+          { title: "Approval boundaries", body: "Routines should stop before purchases, messages, bookings, data sharing, or other important actions." },
+          { title: "Scoped tools", body: "Connected services should be granted only the access needed for a routine and remain understandable to the user." },
+          { title: "Inspectable source", body: "The public core project lets early users and maintainers inspect how Nue is built as it matures." }
+        ]
+      },
+      {
+        eyebrow: "EARLY ACCESS NOTE",
+        title: "Security documentation will deepen with each release.",
+        body: "As installers, cloud tiers, and team features become available, this page will expand with architecture notes, data handling details, and responsible disclosure guidance.",
+        cards: [
+          { title: "No silent autonomy", body: "The product direction favors visible plans, reviewable changes, and explicit consent for consequential actions." },
+          { title: "User-owned context", body: "Memory and routines are treated as personal infrastructure, not generic platform data." },
+          { title: "Transparent maturity", body: "Early-access surfaces should be labeled honestly so users understand what is ready and what is coming." },
+          { title: "Contact", body: "For security questions, email hello@nue.orthg.nl while a dedicated disclosure channel is prepared." }
+        ]
+      }
+    ]
+  },
+  developers: {
+    badge: "DEVELOPERS",
+    title: "Build with Nue and inspect the agent OS core.",
+    description: "Nue is in early access. Developers can follow the docs, inspect the source, and help shape the local-first runtime, workflow model, and integrations.",
+    primaryCta: { href: "https://docs.nue.orthg.nl", label: "Open docs" },
+    secondaryCta: { href: "https://github.com/orthogonalhq/nous-core", label: "View GitHub" },
+    heroStats: [
+      { label: "Stage", value: "Early access" },
+      { label: "Core", value: "Open source" },
+      { label: "Installers", value: "Coming soon" }
+    ],
+    sections: [
+      {
+        eyebrow: "DEVELOPER PATHS",
+        title: "Start from source, docs, or a workflow idea.",
+        cards: [
+          { title: "Read the docs", body: "Follow concepts, local setup notes, configuration guidance, and product model updates." },
+          { title: "Inspect source", body: "Review the core project while the public rename from Nous to Nue is completed." },
+          { title: "Shape integrations", body: "Help define safe tool use, approval boundaries, and reusable workflow patterns." },
+          { title: "Track releases", body: "Signed binary releases are not available yet; release notes and checksums will accompany installers." }
+        ]
+      }
+    ],
+    closing: { eyebrow: "TRANSITION NOTE", title: "The public repo is still completing the Nue rename.", body: "Some GitHub and documentation surfaces may still mention Nous during migration. The product brand is Nue, and migration notes should remain explicit until the transition is finished.", cta: { href: "https://github.com/orthogonalhq/nous-core", label: "View source" } }
+  },
+  login: {
+    badge: "ACCOUNT ACCESS",
+    title: "Nue accounts are not open yet.",
+    description: "Local-first early access does not require a Nue cloud account. Managed cloud tiers and team workspaces will add sign-in when they are ready.",
+    primaryCta: { href: "/download#waitlist", label: "Join early access" },
+    secondaryCta: { href: "/pricing", label: "View pricing" },
+    heroStats: [
+      { label: "Status", value: "Coming soon" },
+      { label: "Today", value: "Local access" },
+      { label: "Cloud", value: "Waitlist" }
+    ],
+    sections: [
+      {
+        eyebrow: "COMING SOON",
+        title: "Sign-in will arrive with managed cloud features.",
+        cards: [
+          { title: "Local first", body: "The early product direction starts with local control and source/docs access rather than a hosted account gate." },
+          { title: "Cloud waitlist", body: "Join from pricing if you want managed model access, background runs, or team features." },
+          { title: "Team access", body: "Organizations can contact us to discuss shared workspaces, governance, and deployment needs." },
+          { title: "No dead end", body: "This page exists so global navigation is honest while accounts are still being prepared." }
+        ]
+      }
+    ]
+  },
   useCases: {
     badge: "USE CASES",
     title: "Nue is for the recurring work that quietly consumes your week.",
     description:
       "Explore practical ways a private personal agent OS can help individuals, families, and teams turn repeated requests into reusable routines with memory, tools, and approval points.",
-    primaryCta: { href: "/download", label: "Download early access" },
+    primaryCta: { href: "/download#waitlist", label: "Join early access" },
     secondaryCta: { href: "/product", label: "Explore product" },
     heroStats: [
       { label: "For", value: "Individuals" },
@@ -200,11 +285,89 @@ export const subpageCopy = {
       }
     ],
     closing: {
-      eyebrow: "PLACEHOLDER HUB",
-      title: "More use-case pages are coming.",
-      body: "This hub gives every early use-case URL a useful destination while we build detailed examples, guides, and workflow templates.",
+      eyebrow: "NEXT STEP",
+      title: "Find the pattern that matches your recurring work.",
+      body: "Start from the use case closest to your week, then adapt the routine with your tools, memory boundaries, and approval points.",
       cta: { href: "/resources", label: "Browse resources" }
     }
+  },
+  useCasesIndividuals: {
+    badge: "USE CASES · INDIVIDUALS",
+    title: "Turn personal admin into private routines you can trust.",
+    description: "Nue helps with the repeated planning, follow-ups, research, and life logistics that consume focus without needing to leave your control.",
+    primaryCta: { href: "/download#waitlist", label: "Join early access" },
+    secondaryCta: { href: "/product", label: "Explore product" },
+    heroStats: [
+      { label: "Best for", value: "Personal work" },
+      { label: "Pattern", value: "Recurring routines" },
+      { label: "Boundary", value: "Ask first" }
+    ],
+    sections: [
+      {
+        eyebrow: "PERSONAL ROUTINES",
+        title: "Delegate the tasks you keep explaining.",
+        body: "Start with natural requests, let Nue draft the repeatable steps, and keep approvals on sensitive actions.",
+        cards: [
+          { title: "Planning", body: "Prepare travel options, weekly plans, project next steps, and reminders from your preferences and constraints.", items: ["Travel planning", "Weekly reviews", "Project checklists"] },
+          { title: "Follow-ups", body: "Track loose ends across notes, email drafts, and conversations so important threads do not disappear.", items: ["People to reply to", "Open decisions", "Draft responses"] },
+          { title: "Research", body: "Compare options, summarize findings, and preserve the reasoning behind recommendations for later review.", items: ["Product comparisons", "Decision briefs", "Saved sources"] },
+          { title: "Life admin", body: "Review subscriptions, bills, appointments, forms, and recurring personal maintenance with clear approval gates.", items: ["Bill review", "Appointments", "Subscription checks"] }
+        ]
+      }
+    ],
+    closing: { eyebrow: "PRIVATE BY DEFAULT", title: "Your personal context should remain yours.", body: "Nue is designed around local-first memory, inspectable routines, and explicit approval before important actions.", cta: { href: "/security", label: "Review security" } }
+  },
+  useCasesFamilies: {
+    badge: "USE CASES · FAMILIES",
+    title: "Coordinate household work without adding another dashboard.",
+    description: "Nue helps families turn meal planning, errands, calendars, trips, and school logistics into calm routines with visible decisions.",
+    primaryCta: { href: "/download#waitlist", label: "Join early access" },
+    secondaryCta: { href: "/product", label: "Explore product" },
+    heroStats: [
+      { label: "Best for", value: "Households" },
+      { label: "Pattern", value: "Shared logistics" },
+      { label: "Boundary", value: "Approval gates" }
+    ],
+    sections: [
+      {
+        eyebrow: "HOUSEHOLD ROUTINES",
+        title: "Make recurring coordination easier to repeat.",
+        body: "Nue can remember preferences you allow, prepare plans, and stop before orders, messages, or calendar changes.",
+        cards: [
+          { title: "Meal planning", body: "Build realistic meal plans from schedules, preferences, budget, and pantry notes before preparing a grocery cart.", items: ["Weekly menus", "Grocery drafts", "Diet preferences"] },
+          { title: "Calendar coordination", body: "Summarize the week, spot conflicts, and prepare reminders or drafts for family handoffs.", items: ["Schedule checks", "Conflict flags", "Reminder drafts"] },
+          { title: "Errands", body: "Keep recurring errands visible and prepare routes, lists, or ordering steps for approval.", items: ["Shopping lists", "Pickup plans", "Recurring tasks"] },
+          { title: "Travel and events", body: "Coordinate packing lists, bookings to review, itineraries, and shared notes for trips or family events.", items: ["Packing lists", "Itineraries", "Booking review"] }
+        ]
+      }
+    ],
+    closing: { eyebrow: "CONTROLLED AUTOMATION", title: "Helpful routines should not act behind your back.", body: "Nue is built to ask before important actions like purchases, messages, bookings, and external changes.", cta: { href: "/product#tools", label: "See tools and approvals" } }
+  },
+  useCasesBusinesses: {
+    badge: "USE CASES · BUSINESSES",
+    title: "Standardize repeatable work while keeping humans in control.",
+    description: "Nue helps teams shape client follow-ups, intake, reporting, research, and operational handoffs into inspectable routines.",
+    primaryCta: { href: "mailto:hello@nue.orthg.nl?subject=Nue%20team%20use%20cases", label: "Talk to us" },
+    secondaryCta: { href: "/pricing", label: "View pricing" },
+    heroStats: [
+      { label: "Best for", value: "Teams" },
+      { label: "Pattern", value: "Operations" },
+      { label: "Boundary", value: "Review first" }
+    ],
+    sections: [
+      {
+        eyebrow: "TEAM ROUTINES",
+        title: "Capture the process, not just the prompt.",
+        body: "Nue turns repeated operational intent into routines with steps, permissions, run history, and human review points.",
+        cards: [
+          { title: "Client follow-ups", body: "Prepare status updates, next-step reminders, and context summaries without losing the account history.", items: ["Draft updates", "Open blockers", "Next steps"] },
+          { title: "Intake", body: "Turn incoming requests into structured briefs, routed tasks, and review queues.", items: ["Request summaries", "Routing rules", "Approval queues"] },
+          { title: "Reports", body: "Compile recurring metrics, notes, and narrative updates for weekly or monthly review.", items: ["Weekly reports", "Research briefs", "Decision logs"] },
+          { title: "Operations", body: "Coordinate repeatable handoffs across docs, calendars, tickets, and team knowledge with auditable runs.", items: ["Handoffs", "Run history", "Governance"] }
+        ]
+      }
+    ],
+    closing: { eyebrow: "EARLY TEAM SUPPORT", title: "Bring us the workflow you repeat every week.", body: "We are working with early teams to shape shared workspace, governance, support, and deployment needs.", cta: { href: "mailto:hello@nue.orthg.nl?subject=Nue%20team%20workflow", label: "Contact us" } }
   },
   product: {
     badge: "PRODUCT OVERVIEW",
@@ -219,6 +382,66 @@ export const subpageCopy = {
       { label: "Principle", value: "Yours" }
     ],
     sections: [
+      {
+        id: "conversation",
+        eyebrow: "CONVERSATION",
+        title: "Start with the natural request.",
+        body: "Nue keeps the chat surface familiar while adding durable context, preferences, and a path from one-off help to reusable work.",
+        cards: [
+          { title: "Familiar input", body: "Ask in plain language instead of configuring a workflow from scratch." },
+          { title: "Persistent context", body: "Use memory you allow so repeated requests start with the right background." },
+          { title: "Inspectable response", body: "See what Nue understood, what it plans to do, and where it needs permission." },
+          { title: "Routine candidate", body: "Promote repeated work into a saved routine when the same request keeps coming back." }
+        ]
+      },
+      {
+        id: "delegation",
+        eyebrow: "DELEGATION",
+        title: "Turn intent into a reusable routine.",
+        body: "Delegation in Nue means visible steps, editable boundaries, schedules, and explicit approvals — not hidden automation.",
+        cards: [
+          { title: "Drafted steps", body: "Nue proposes the sequence before anything runs." },
+          { title: "Editable workflow", body: "Adjust triggers, tools, data access, and stop points." },
+          { title: "Scheduled runs", body: "Let recurring work return at the right time with current context." },
+          { title: "Human checkpoints", body: "Require review before money, messages, bookings, or external changes." }
+        ]
+      },
+      {
+        id: "agent-os",
+        eyebrow: "AGENT OS",
+        title: "One private home for memory, tools, and runs.",
+        body: "The operating-system layer keeps agent work understandable: what it knows, what it can touch, what ran, and what needs you.",
+        cards: [
+          { title: "Memory", body: "Keep useful context organized around your control." },
+          { title: "Tools", body: "Connect services with scoped permissions and clear boundaries." },
+          { title: "Run history", body: "Review outcomes, decisions, and artifacts after each routine." },
+          { title: "Control surface", body: "Manage agents, schedules, approvals, and connected capabilities in one workspace." }
+        ]
+      },
+      {
+        id: "ownership",
+        eyebrow: "OWNERSHIP",
+        title: "Your agent should not become another locked platform.",
+        body: "Nue is open-source and local-first so personal memory, workflows, and model choices can stay portable and inspectable.",
+        cards: [
+          { title: "Open source", body: "Inspect the core project and follow development in public." },
+          { title: "Local-first direction", body: "Keep sensitive personal context close to your own environment where possible." },
+          { title: "Bring your own keys", body: "Use model access patterns that preserve your control over providers and billing." },
+          { title: "Portable routines", body: "Avoid burying your recurring work inside an opaque assistant account." }
+        ]
+      },
+      {
+        id: "tools",
+        eyebrow: "TOOLS & APPROVALS",
+        title: "Connect services without surrendering judgment.",
+        body: "Nue is designed to use tools for real work while stopping before sensitive, irreversible, or expensive actions.",
+        cards: [
+          { title: "Scoped access", body: "Grant only the capabilities a routine needs." },
+          { title: "Approval rules", body: "Set the actions that must wait for you." },
+          { title: "Action previews", body: "Review drafts, carts, messages, bookings, or changes before execution." },
+          { title: "Audit trail", body: "Keep a clear record of what happened and why." }
+        ]
+      },
       {
         eyebrow: "PILLARS",
         title: "The product is built around a simple loop.",

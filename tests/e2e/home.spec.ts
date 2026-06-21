@@ -13,7 +13,15 @@ test("home page presents the Nue homepage narrative", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "As simple as a conversation." })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Powerful agents should still feel personal, private, and yours." })).toBeVisible();
   await expect(page.getByRole("link", { name: /Download for|Download Nue/ }).first()).toHaveAttribute("href", /\/download(\?os=(windows|macos|linux))?/);
-  await expect(page.getByLabel("Primary navigation").getByRole("link", { name: /Download/ })).toHaveAttribute("href", /\/download(\?os=(windows|macos|linux))?/);
+  const isMobile = (page.viewportSize()?.width ?? 0) < 640;
+  if (isMobile) {
+    await page.getByRole("button", { name: "Open navigation menu" }).click();
+    const mobileNavigation = page.getByRole("navigation", { name: "Mobile navigation" });
+    await expect(mobileNavigation.getByRole("link", { name: /Download/ })).toHaveAttribute("href", /\/download(\?os=(windows|macos|linux))?/);
+    await page.getByRole("button", { name: "Close navigation menu" }).click();
+  } else {
+    await expect(page.getByLabel("Primary navigation").getByRole("link", { name: /Download/ })).toHaveAttribute("href", /\/download(\?os=(windows|macos|linux))?/);
+  }
   await expect(page.getByRole("link", { name: "View Nue on GitHub" })).toBeVisible();
 
   const footer = page.getByRole("contentinfo");

@@ -6,7 +6,7 @@ export const homeCopy = {
             { label: "PRIVACY FIRST", variant: "highlight" },
             { label: "AGENT OS", variant: "normal" }
         ],
-        subtitleBody: "Nue turns everyday requests into private routines that remember the details, handle the steps, and ask before anything important happens.",
+        subtitleBody: "Nue turns everyday requests into private, local-first routines that remember the details, handle the steps, and ask before anything important happens — so your agent stays yours.",
         subtitleLead: "AI should give you time back.",
         title: "Your personal agent, from chat to operating system."
     },
@@ -58,6 +58,7 @@ export const homeCopy = {
                 links: [
                     { description: "Set up Nue and connect your tools.", external: true, href: "https://docs.nue.orthg.nl", label: "Docs" },
                     { description: "Privacy, security, and permission boundaries.", href: "/security", label: "Security" },
+                    { description: "How waitlist, product, model, and tool data flows work.", href: "/data-use", label: "Data use" },
                     { description: "Build with Nue and inspect the source.", href: "/developers", label: "Developers" }
                 ],
                 variant: "default"
@@ -69,6 +70,7 @@ export const homeCopy = {
         ariaLabel: "Footer navigation",
         bottomLinks: [
             { href: "/privacy", label: "Privacy" },
+            { href: "/data-use", label: "Data use" },
             { href: "/terms", label: "Terms" },
             { href: "/security", label: "Security" }
         ],
@@ -115,7 +117,7 @@ export const homeCopy = {
             { href: "/download", label: "Download Nue", variant: "primary" },
             { external: true, href: "https://github.com/orthogonalhq/nous-core", label: "View GitHub", variant: "secondary" }
         ],
-        taglineBody: "Nue turns everyday requests into private routines that remember the details, handle the steps, and ask before anything important happens.",
+        taglineBody: "Nue turns everyday requests into private, local-first routines that remember the details, handle the steps, and ask before anything important happens.",
         taglineLead: "AI should give you time back.",
         themeLabel: "Theme"
     },

@@ -12,6 +12,7 @@ type PrimaryCtaButtonProps = {
   "aria-label": string;
   children: ReactNode;
   className?: string;
+  disabled?: boolean;
   onClick?: () => void;
   style?: CSSProperties;
   type?: "button" | "submit" | "reset";
@@ -27,10 +28,10 @@ export function PrimaryCtaLink({ children, className = "", href }: PrimaryCtaLin
   );
 }
 
-export function PrimaryCtaButton({ "aria-label": ariaLabel, children, className = "", onClick, style, type = "button" }: PrimaryCtaButtonProps) {
+export function PrimaryCtaButton({ "aria-label": ariaLabel, children, className = "", disabled = false, onClick, style, type = "button" }: PrimaryCtaButtonProps) {
   return (
     <PrimaryCtaChrome className={className} style={style}>
-      <button aria-label={ariaLabel} className={styles.button} onClick={onClick} type={type}>
+      <button aria-label={ariaLabel} className={styles.button} disabled={disabled} onClick={onClick} type={type}>
         <span>{children}</span>
       </button>
     </PrimaryCtaChrome>
